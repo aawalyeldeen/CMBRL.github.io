@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Lab Name — Research Lab</title>
-  <meta name="description" content="Official website for Your Lab Name. Mission, vision, people, research areas, publications, and contact." />
+  <title>Cellular & Molecular Biosciences Research Laboratory — Cairo University</title>
+  <meta name="description" content="Cellular & Molecular Biosciences Research Laboratory (CMBRL), Cairo University — cancer biology, biomarkers, breast cancer, translational research." />
   <style>
     :root{
       --bg:#0f1220; --panel:#171a2b; --muted:#a4a9c6; --text:#ecf0ff; --accent:#7b9eff;
@@ -51,48 +51,29 @@
     .pub .meta{font-size:13px;color:var(--muted)}
 
     .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:10px 14px;text-decoration:none;color:var(--text);background:rgba(255,255,255,.04)}
+    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:10px 14px;text-decoration:none;color:#var(--text);background:rgba(255,255,255,.04)}
     .btn.primary{background:linear-gradient(135deg,var(--accent),#9db3ff);border-color:transparent;color:#0c1130}
 
     footer{max-width:var(--max);margin:40px auto;padding:24px 18px;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
 
-    /* Responsive */
     @media (max-width:900px){.hero{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
   </style>
-  <script>
-    // Simple theme ring focus visible
-    document.addEventListener('keydown', e=>{if(e.key==='Tab'){document.documentElement.classList.add('show-focus')}});
-  </script>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs/%3E%3Ccircle cx='32' cy='32' r='30' fill='%237b9eff'/%3E%3Cpath d='M16 34c10-14 22-14 32 0' stroke='%230c1130' stroke-width='6' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='28' r='4' fill='%230c1130'/%3E%3Ccircle cx='40' cy='28' r='4' fill='%230c1130'/%3E%3C/svg%3E"/>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ResearchProject",
-    "name": "Your Lab Name",
-    "url": "https://your-lab.github.io/",
-    "description": "Research lab focusing on ...",
-    "member": [],
-    "areaServed": "Global",
-    "sponsor": "",
-    "keywords": ["research","science","engineering"],
-    "contactPoint": {"@type":"ContactPoint","contactType":"general","email":"contact@yourlab.org"}
-  }
-  </script>
 </head>
 <body>
   <header>
     <nav class="nav" aria-label="primary">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
-        <span>Your Lab Name</span>
+        <img class="logo" src="logo.png" alt="CMBRL logo" style="object-fit:cover" />
+        <span>Cellular & Molecular Biosciences Research Lab</span>
       </div>
       <div class="spacer"></div>
       <div class="menu">
         <a href="#about">About</a>
         <a href="#mission">Mission</a>
         <a href="#vision">Vision</a>
-        <a href="#people">People</a>
+        <a href="#team">Research Team</a>
         <a href="#research">Research</a>
+        <a href="#projects">Projects</a>
         <a href="#publications">Publications</a>
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
@@ -104,11 +85,11 @@
     <section class="hero">
       <div class="card">
         <h1 class="h1">We explore <em>ideas</em> that matter.</h1>
-        <p class="lead">Welcome to <strong>Your Lab Name</strong> — a research group at <em>Institution</em> working at the intersection of X, Y, and Z. We publish open science and build tools that advance the field.</p>
+        <p class="lead">Cellular and Molecular Biosciences Research Laboratory at Cairo University. Our research spans a broad range of interconnected areas, including: <br><br><strong>Cancer Research</strong> — focusing on biomarker discovery, tumor progression, and therapeutic targeting. <br><strong>Cell Biology</strong> — elucidating signaling pathways, extracellular matrix interactions, and cell–cell communication. <br><strong>Human Biology</strong> — linking laboratory discoveries to clinical translation and patient outcomes.</p>
         <div class="badges">
-          <span class="badge">Open science</span>
-          <span class="badge">Reproducible</span>
-          <span class="badge">Interdisciplinary</span>
+          <span class="badge">Cancer biology</span>
+          <span class="badge">Breast cancer</span>
+          <span class="badge">Translational research</span>
         </div>
         <div class="cta">
           <a class="btn primary" href="#publications">Browse publications</a>
@@ -118,9 +99,7 @@
       <div class="card">
         <h2 style="margin-top:0">Highlights</h2>
         <ul class="muted">
-          <li>🎖️ Paper accepted at <em>Top Conference</em> (2025)</li>
-          <li>🧪 Released dataset <em>LabDataset v1</em></li>
-          <li>🤝 New collaboration with <em>Partner Institute</em></li>
+          <!-- Provide latest updates and we will fill these in. -->
         </ul>
       </div>
     </section>
@@ -129,12 +108,13 @@
       <h2>About the Lab</h2>
       <div class="two">
         <div class="panel card">
-          <p>Our lab studies <em>your research focus</em>. We combine theoretical research with practical systems. We welcome students and collaborators worldwide.</p>
-          <p class="muted">Founded: 20XX • Location: City, Country</p>
+          <p>The <strong>Cellular and Molecular Biosciences Research Laboratory (CMBRL)</strong> at Cairo University—founded and led by <strong>Prof. Dr. Sherif A. Ibrahim</strong>, Professor of Zoology (Cancer Cell Biology) and Egyptian leader of the GLYCANC Project—is dedicated to advancing our understanding of cancer biology at the molecular and cellular levels.</p>
+          <p>Prof. Ibrahim has secured competitive funding from EU Horizon 2020 to investigate the role of the cell-surface heparan sulfate proteoglycan <em>Syndecan‑1 (Sdc‑1)</em> and regulatory microRNAs in breast cancer progression. He has also led projects funded by DAAD, STDF, and ASRT. His pioneering work aims to define distinct molecular signatures and uncover novel mechanisms driving inflammatory breast cancer (IBC) and its tumor microenvironment, with emphasis on proteoglycans, cancer stem cells, and extracellular vesicles.</p>
+          <p class="muted">Founded: <strong>2019</strong> • Department of Zoology, Faculty of Science, Cairo University — Giza, Egypt</p>
         </div>
         <div class="panel card">
-          <p><strong>Open Positions:</strong> We occasionally recruit MSc/PhD students and interns. Send a short email with your CV, links, and interests.</p>
-          <p class="muted">We especially encourage applications from underrepresented groups.</p>
+          <p><strong>Open Positions:</strong> Not applicable at this time. Follow us for future opportunities.</p>
+          <p class="muted">We welcome collaborative projects and visiting researchers.</p>
         </div>
       </div>
     </section>
@@ -142,74 +122,54 @@
     <section id="mission">
       <h2>Mission</h2>
       <div class="panel card">
-        <p>To advance the state of the art in <em>your area</em> through rigorous research, open-source releases, and impactful publications that benefit academia and industry.</p>
+        <p>To elucidate the molecular circuitry of cancer—with emphasis on breast cancer and related conditions such as endometriosis—by discovering robust early‑detection biomarkers and actionable therapeutic targets, and by decoding the signaling networks and microenvironmental cues that drive initiation, progression, and treatment resistance. We conduct rigorously reproducible research using state‑of‑the‑art cellular, molecular, and multi‑omics technologies, translating mechanistic insight into clinically relevant strategies for patients in Egypt and worldwide.</p>
       </div>
     </section>
 
     <section id="vision">
       <h2>Vision</h2>
       <div class="panel card">
-        <p>A world where fundamental discoveries translate into accessible tools and real outcomes for society, education, and innovation.</p>
+        <p>A future where breast cancer is detected earlier, treated more precisely, and prevented more effectively through validated biomarkers, targeted therapeutics, and deep mechanistic understanding—bridging bench discoveries to bedside impact for communities in Egypt and beyond.</p>
       </div>
     </section>
 
-    <section id="people">
-      <h2>People</h2>
+    <section id="team">
+      <h2>Research Team</h2>
       <div class="people">
-        <div class="person">
-          <div class="avatar" aria-hidden="true"></div>
-          <div>
-            <div><strong>Mohamed Ahmed</strong> — PI / Director</div>
-            <div class="muted">PhD, Field • <a href="#">Scholar</a> • <a href="#">Google Scholar</a></div>
-          </div>
-        </div>
-        <div class="person">
-          <div class="avatar" aria-hidden="true"></div>
-          <div>
-            <div><strong>Researcher Name</strong> — Postdoc</div>
-            <div class="muted">Interests: topic A, B</div>
-          </div>
-        </div>
-        <!-- Duplicate .person blocks as needed -->
+        <div class="person"><div class="avatar"></div><div><strong>Prof. Dr. Sherif Abdelaziz Ibrahim</strong><br><span class="muted">Professor of Cancer Cell Biology • Head & Founder<br>Department of Zoology, Faculty of Science, Cairo University</span></div></div>
+        <div class="person"><div class="avatar"></div><div><strong>Dr. Hebatallah Hassan</strong><br><span class="muted">Associate Professor • Co‑PI<br>Department of Zoology, Faculty of Science, Cairo University</span></div></div>
+        <div class="person"><div class="avatar"></div><div><strong>Mr. Amr Ahmed WalyEldden</strong><br><span class="muted">PhD Student • Senior Researcher</span></div></div>
+        <div class="person"><div class="avatar"></div><div><strong>Mrs. Liali Yousef Talat</strong><br><span class="muted">PhD Student • Senior Researcher</span></div></div>
+        <div class="person"><div class="avatar"></div><div><strong>Mrs. Maysaa Maher</strong><br><span class="muted">MSc Student • Junior Researcher</span></div></div>
       </div>
     </section>
 
     <section id="research">
       <h2>Research Areas</h2>
       <div class="research-grid">
-        <div class="research-item">
-          <div class="tag">Area 1</div>
-          <h3>Topic A</h3>
-          <p class="muted">Short description of this theme, key papers, datasets, and ongoing projects.</p>
-        </div>
-        <div class="research-item">
-          <div class="tag">Area 2</div>
-          <h3>Topic B</h3>
-          <p class="muted">Short description goes here. Add links to code, demos, or datasets.</p>
-        </div>
-        <div class="research-item">
-          <div class="tag">Area 3</div>
-          <h3>Topic C</h3>
-          <p class="muted">Short description goes here.</p>
-        </div>
+        <div class="research-item"><div class="tag">Cancer Research</div><h3>Biomarker Discovery & Therapeutic Targeting</h3><p class="muted">We focus on identifying molecular biomarkers for early detection and uncovering novel therapeutic targets that drive tumor progression, with emphasis on inflammatory breast cancer.</p></div>
+        <div class="research-item"><div class="tag">Cell Biology</div><h3>Signaling & Microenvironment</h3><p class="muted">Our work explores cellular signaling pathways, extracellular matrix interactions, and mechanisms of cell–cell communication shaping cancer progression and metastasis.</p></div>
+        <div class="research-item"><div class="tag">Human Biology</div><h3>Clinical Translation</h3><p class="muted">We link laboratory discoveries to clinical outcomes, integrating molecular and proteomic insights to improve patient diagnosis, treatment, and prognosis.</p></div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects & International Collaborations</h2>
+      <div class="pub-list">
+        <div class="pub"><div class="title">1. Proteomic profiling of exosomes: Discovery of novel diagnostic biomarkers for lymph node metastasis in breast cancer</div><div class="meta">PI: Dr. Sherif A. Ibrahim • Grant ID: Respect1-10052 • Funding: ASRT • Period: Oct 2022 – May 2025</div></div>
+        <div class="pub"><div class="title">2. Extracellular vesicle-derived proteoglycans as non-invasive liquid biopsy-based cancer biomarkers: Towards novel breast cancer screening</div><div class="meta">Co-PI: Dr. Hebatallah Hassan • Grant ID: 46282 • Funding: STDF • Period: May 2022 – Apr 2025</div></div>
+        <div class="pub"><div class="title">3. Syndecan-1 as a novel therapeutic target for putative stem cells in inflammatory breast cancer</div><div class="meta">PI: Dr. Sherif A. Ibrahim • Grant ID: 6309 • Funding: STDF • Period: Aug 2014 – Jul 2017</div></div>
+        <div class="pub"><div class="title">4. MicroRNA signatures as potential biomarkers and therapeutic targets in inflammatory and non-inflammatory breast cancer Egyptian patients</div><div class="meta">PI: Dr. Sherif A. Ibrahim • Grant ID: 12683 • Funding: STDF • Period: Oct 2016 – Nov 2017</div></div>
+        <div class="pub"><div class="title">5. Matrix glycans as multifunctional pathogenesis factors and therapeutic targets in cancer</div><div class="meta">PI: Prof. Martin Götte • Egyptian Partner: Dr. Sherif A. Ibrahim • Grant ID: 645756 • Funding: EU H2020-MSCA-RISE • Period: Jun 2015 – May 2019</div></div>
+        <div class="pub"><div class="title">6. Syndecan-1 as a modulator of exosome-mediated microRNA function in inflammatory breast cancer</div><div class="meta">PI: Prof. Martin Götte • Egyptian Investigator: Dr. Sherif A. Ibrahim • Grant ID: 56808461 • Funding: DAAD • Period: Jan 2015 – Dec 2015</div></div>
+        <div class="pub"><div class="title">7. Syndecan-1 in inflammation</div><div class="meta">PI: Prof. Martin Götte • Egyptian Investigator: Dr. Sherif A. Ibrahim • Grant ID: 56808461 • Funding: DAAD • Period: Jan 2013 – Dec 2014</div></div>
       </div>
     </section>
 
     <section id="publications">
       <h2>Selected Publications</h2>
       <div class="pub-list">
-        <!-- Example item -->
-        <article class="pub card">
-          <div class="title">Title of the Paper</div>
-          <div class="meta">Authors — <em>Venue</em>, 2025 • <a href="#">PDF</a> • <a href="#">Code</a> • <a href="#">BibTeX</a></div>
-          <p class="muted">One‑sentence summary of the contribution.</p>
-        </article>
-        <article class="pub card">
-          <div class="title">Another Paper Title</div>
-          <div class="meta">Authors — <em>Journal</em>, 2024 • <a href="#">PDF</a> • <a href="#">Project</a></div>
-          <p class="muted">Short description of the work.</p>
-        </article>
-        <!-- Add more .pub blocks as needed -->
+        <!-- Publications will be added here. -->
       </div>
     </section>
 
@@ -217,8 +177,7 @@
       <h2>News</h2>
       <div class="panel card">
         <ul>
-          <li>[2025‑05‑06] Our dataset reached 1k downloads.</li>
-          <li>[2025‑02‑11] Paper accepted to AwesomeConf.</li>
+          <!-- Highlights will be added here. -->
         </ul>
       </div>
     </section>
@@ -227,27 +186,16 @@
       <h2>Contact</h2>
       <div class="two">
         <div class="panel card">
-          <p><strong>Email:</strong> <a href="mailto:contact@yourlab.org">contact@yourlab.org</a></p>
-          <p><strong>Address:</strong> Department / Building, University, City, Country</p>
-          <p><strong>Social:</strong> <a href="#">Twitter/X</a> • <a href="#">GitHub</a> • <a href="#">LinkedIn</a></p>
+          <p><strong>Email:</strong> <a href="mailto:cmb.research.lab@gmail.com">cmb.research.lab@gmail.com</a></p>
+          <p><strong>Address:</strong> Department of Zoology, Faculty of Science, Cairo University, Giza, Egypt</p>
+          <p><strong>Social:</strong> <a href="https://www.linkedin.com/in/cmbrl/">LinkedIn</a> • <a href="https://www.facebook.com/CellularMolecularBiosciencesResearchLab/">Facebook</a> • <a href="https://www.researchgate.net/lab/Sherif-Abdelaziz-Ibrahim-Lab?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJwcm9maWxlIiwicHJldmlvdXNQYWdlIjoicHJvZmlsZSIsInBvc2l0aW9uIjoicGFnZUNvbnRlbnQifX0">ResearchGate</a></p>
         </div>
-        <form class="panel card" name="contact-form" onsubmit="alert('Thanks! This is a static site. Replace with your preferred form handler.'); return false;">
-          <label for="name">Name</label><br/>
-          <input id="name" name="name" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:var(--text);margin:6px 0 10px"/>
-          <label for="email">Email</label><br/>
-          <input id="email" type="email" name="email" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:var(--text);margin:6px 0 10px"/>
-          <label for="msg">Message</label><br/>
-          <textarea id="msg" name="message" rows="5" required style="width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.04);color:var(--text);margin:6px 0 10px"></textarea>
-          <button class="btn primary" type="submit">Send</button>
-          <p class="muted" style="margin-top:8px">Tip: Replace this with an email link, Google Form, or a privacy‑friendly form service when needed.</p>
-        </form>
       </div>
     </section>
   </main>
 
   <footer>
-    <div>© <span id="year"></span> Your Lab Name. Built as a static site (no tracking).</div>
-    <div style="margin-top:6px">To ensure longevity, mirror this site on <a href="https://github.com">GitHub Pages</a> and archive snapshots with the <a href="https://web.archive.org/">Internet Archive</a>.</div>
+    <div>© <span id="year"></span> Cellular & Molecular Biosciences Research Laboratory.</div>
   </footer>
 
   <script>
