@@ -65,7 +65,7 @@
         left: 0;
         width: 200%;
         height: 200%;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/rect%3E%3C/svg%3E");
         background-size: 200px;
         pointer-events: none;
         opacity: 0.5;
@@ -126,6 +126,16 @@
     .nav-link:hover::after {
         width: 100%;
         left: 0;
+    }
+
+    /* Collapsible content animation */
+    .collapsible-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+    }
+    .collapsible-content.open {
+        max-height: 500px; /* Sufficiently large value for content to fit */
     }
   </style>
 </head>
@@ -387,42 +397,50 @@
       </div>
     </section>
 
-    <!-- ENHANCED PUBLICATIONS SECTION WITH SEARCH/FILTER -->
+    <!-- ENHANCED PUBLICATIONS SECTION WITH NEW DATA AND COLLAPSIBLE FILTERS -->
     <section id="publications" class="hero-max mx-auto px-4 py-8">
-      <h2 class="text-2xl font-bold mb-4 text-primary-blue">Publications (27 Total)</h2>
+      <h2 class="text-2xl font-bold mb-4 text-primary-blue">Publications (41 Total)</h2>
       
-      <!-- Controls for Search, Sort, and Filter -->
-      <div class="bg-white rounded-xl shadow-md p-4 mb-6 border border-gray-100 card-hover">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-          
-          <!-- Search Box -->
-          <div class="md:col-span-1">
-            <label for="pub-search" class="block text-xs font-medium text-muted-text mb-1">Search Title or Journal</label>
-            <input type="text" id="pub-search" placeholder="e.g., Syndecan-1 or PLOS ONE" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-dark-text focus:ring-primary-blue focus:border-primary-blue">
-          </div>
-          
-          <!-- Sort Dropdown -->
-          <div class="md:col-span-1">
-            <label for="pub-sort" class="block text-xs font-medium text-muted-text mb-1">Sort By</label>
-            <select id="pub-sort" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-dark-text focus:ring-primary-blue focus:border-primary-blue bg-white">
-              <option value="year-desc">Year (Latest First)</option>
-              <option value="year-asc">Year (Oldest First)</option>
-            </select>
-          </div>
+      <!-- Button to toggle the filter/search controls -->
+      <button id="toggle-pub-controls-btn" class="flex items-center gap-2 px-4 py-2 mb-4 text-sm font-medium bg-white rounded-xl border border-gray-300 hover:bg-gray-100 transition duration-150 text-dark-text">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-primary-blue transform transition-transform duration-300" id="filter-icon"><path d="M22 3.5H2l8 8.4V22h4v-10.1L22 3.5z"/></svg>
+        Filter & Search Options
+      </button>
 
-          <!-- Filter Dropdown -->
-          <div class="md:col-span-1">
-            <label for="pub-filter-year" class="block text-xs font-medium text-muted-text mb-1">Filter By Year</label>
-            <select id="pub-filter-year" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-dark-text focus:ring-primary-blue focus:border-primary-blue bg-white">
-              <option value="">All Years</option>
-              <!-- Options populated by JS later -->
-            </select>
-          </div>
+      <!-- Controls for Search, Sort, and Filter (Collapsible Content) -->
+      <div id="pub-controls" class="collapsible-content">
+        <div class="bg-white rounded-xl shadow-md p-4 mb-6 border border-gray-100 card-hover">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            
+            <!-- Search Box -->
+            <div class="md:col-span-1">
+              <label for="pub-search" class="block text-xs font-medium text-muted-text mb-1">Search Title or Journal</label>
+              <input type="text" id="pub-search" placeholder="e.g., Syndecan-1 or PLOS ONE" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-dark-text focus:ring-primary-blue focus:border-primary-blue">
+            </div>
+            
+            <!-- Sort Dropdown -->
+            <div class="md:col-span-1">
+              <label for="pub-sort" class="block text-xs font-medium text-muted-text mb-1">Sort By</label>
+              <select id="pub-sort" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-dark-text focus:ring-primary-blue focus:border-primary-blue bg-white">
+                <option value="year-desc">Year (Latest First)</option>
+                <option value="year-asc">Year (Oldest First)</option>
+              </select>
+            </div>
 
+            <!-- Filter Dropdown -->
+            <div class="md:col-span-1">
+              <label for="pub-filter-year" class="block text-xs font-medium text-muted-text mb-1">Filter By Year</label>
+              <select id="pub-filter-year" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-dark-text focus:ring-primary-blue focus:border-primary-blue bg-white">
+                <option value="">All Years</option>
+                <!-- Options populated by JS later -->
+              </select>
+            </div>
+
+          </div>
         </div>
       </div>
 
-      <!-- Publication List Container -->
+      <!-- Publication List Container - UPDATED WITH CORRECT CSV DATA -->
       <div id="publication-list" class="grid gap-4">
         
         <!-- Publication 1 (VISIBLE) -->
@@ -430,248 +448,375 @@
           <div class="font-semibold text-dark-text pub-title">Glypican3 and serglycin as potential biomarkers involved in the pathogenesis of ovarian endometriosis</div>
           <div class="text-xs text-muted-text mt-1">
             Journal: <span class="pub-journal">Tissue and Cell</span> (2025).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85121931320&doi=10.1016%2fj.tice.2025.102867&partnerID=40&md5=880a423f05d54a72d38e211833d73b5f" target="_blank" rel="noopener">View publication</a>
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1016/j.tice.2025.102867" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 2 (VISIBLE) -->
         <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 pub-item card-hover" data-year="2025">
-          <div class="font-semibold text-dark-text pub-title">SDC2 and FN as cargo proteins in circulating extracellular vesicles in obese breast cancer patients with lymph node metastasis</div>
+          <div class="font-semibold text-dark-text pub-title">Designing and fabrication of BIRC5-mRNA-based biosensor for early breast cancer diagnosis using a nanostructured (CeO₂-Ru@AuNPs-CNTs)-lab-on-chip</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Scientific Reports</span> (2025).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85188803450&doi=10.1038%2fs41598-025-17638-2&partnerID=40&md5=6e2e28a556f890f55b9e76162ff70e0f" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Biochemical Engineering Journal</span> (2025).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1016/j.bej.2025.109754" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 3 (VISIBLE) -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 pub-item card-hover" data-year="2024">
-          <div class="font-semibold text-dark-text pub-title">Overexpression of miR-21-5p as a potential pathogenesis marker for ovarian endometriosis</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 pub-item card-hover" data-year="2025">
+          <div class="font-semibold text-dark-text pub-title">Cicer arietinum extract as antitumor and protective agent against Ehrlich solid carcinoma-bearing mice</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Journal of Basic and Applied Zoology</span> (2024).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85189387401&doi=10.1186%2fs41936-024-00414-5&partnerID=40&md5=4dd2972922a7f5394025b64c67675f92" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">BMC Complementary Medicine and Therapies</span> (2025).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1186/s12906-025-05061-z" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
-        <!-- HIDDEN PUBLICATIONS (Items 4-27) -->
+        <!-- HIDDEN PUBLICATIONS (Items 4-41) -->
+        
         <!-- Publication 4 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2022">
-          <div class="font-semibold text-dark-text pub-title">Triazolo[3,4-a]isoquinoline chalcone derivative exhibits anticancer activity via induction of oxidative stress, DNA damage, and apoptosis in Ehrlich solid carcinoma-bearing mice</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2025">
+          <div class="font-semibold text-dark-text pub-title">Liposomal delivery of Allolobophora caliginosa coelomic fluid attenuates myocardial infarction by suppressing oxidative damage, inflammation, and apoptosis</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Naunyn-Schmiedeberg's Archives of Pharmacology</span> (2022).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85135402431&doi=10.1007%2fs00210-022-02269-5&partnerID=40&md5=d1d9f8e4e941584c0f3d64c1514749f7" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Applied Biochemistry and Biotechnology</span> (2025).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1007/s12010-025-05340-y" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 5 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2022">
-          <div class="font-semibold text-dark-text pub-title">Immunomodulatory effects of green synthesized silver nanoparticles against Ehrlich solid tumor bearing mice</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2025">
+          <div class="font-semibold text-dark-text pub-title">Chrysin-loaded PLGA nanoparticles alleviate the implantation of endometriotic lesions via attenuation of peritoneal inflammation and downregulating NF-κB activation-driven expression of angiogenic factors</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Egyptian Journal of Basic and Applied Sciences</span> (2022).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85121408890&doi=10.1080%2f2314808X.2021.2001648&partnerID=40&md5=6e2e505191e3e7be7d945a004463d115" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Journal of Drug Delivery Science and Technology</span> (2025).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1016/j.jddst.2025.106984" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 6 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
-          <div class="font-semibold text-dark-text pub-title">Syndecan-1 Promotes Angiogenesis in Triple-Negative Breast Cancer through the Prognostically Relevant Tissue Factor Pathway and Additional Angiogenic Routes</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2025">
+          <div class="font-semibold text-dark-text pub-title">SDC2 and FN as cargo proteins in circulating extracellular vesicles in obese breast cancer patients with lymph node metastasis</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Cancers</span> (2021).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85106654763&doi=10.3390%2fcancers13102318&partnerID=40&md5=1ffc774676100ed43d3129486c8d23ff" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Scientific Reports</span> (2025).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1038/s41598-025-17638-2" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 7 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
-          <div class="font-semibold text-dark-text pub-title">Small extracellular vesicle-encapsulated miR-181b-5p, miR-222-3p and let-7a-5p: Next generation plasma biopsy-based diagnostic biomarkers for inflammatory breast cancer</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2025">
+          <div class="font-semibold text-dark-text pub-title">Calothrixin B by docking JAK2 is a potential therapeutic inhibitor for pancreatic ductal adenocarcinoma</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">PLOS ONE</span> (2021).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85105260843&doi=10.1371%2fjournal.pone.0250642&partnerID=40&md5=b45d06b52701d5ce6754b2d558a2f1ef" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Journal of Pharmacy and Pharmacology</span> (2025).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1093/jpp/rgae149" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 8 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
-          <div class="font-semibold text-dark-text pub-title">Identification of prognostic biomarkers for triple negative breast cancer in Egyptian women: A pilot study</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2025">
+          <div class="font-semibold text-dark-text pub-title">The clinical potential of PDL-1 pathway and some related micro-RNAs as promising diagnostic markers for breast cancer</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">International Journal of Molecular Sciences</span> (2021).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85118742861&doi=10.3390%2fijms222212496&partnerID=40&md5=7d86f76c38b2a3357564d26ac228af4d" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Molecular Medicine</span> (2025).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1186/s10020-025-01137-1" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 9 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
-          <div class="font-semibold text-dark-text pub-title">Effect of green synthesized silver nanoparticles on triple negative breast cancer in vitro and in vivo models</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2025">
+          <div class="font-semibold text-dark-text pub-title">EXT1 as an independent prognostic biomarker in breast cancer: Its correlation with immune infiltration and clinicopathological parameters</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Egyptian Journal of Basic and Applied Sciences</span> (2021).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85121404987&doi=10.1080%2f2314808X.2021.1991278&partnerID=40&md5=72df7c23173550e6efc7743d50849929" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Immuno.</span> (2025).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.3390/immuno5010001" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 10 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2020">
-          <div class="font-semibold text-dark-text pub-title">Inflammatory Breast Carcinoma: Elevated microRNA miR-181b-5p and Reduced miR-200b-3p, miR-200c-3p, and miR-203a-3p Expression as Potential Biomarkers with Diagnostic Value</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2025">
+          <div class="font-semibold text-dark-text pub-title">Integrative multi-omics analysis of autism spectrum disorder reveals unique microbial macromolecules interactions</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Biomolecules</span> (2020).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85088219350&doi=10.3390%2fbiom10071059&partnerID=40&md5=132890656a87754d9b2e59750b316496" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Journal of Advanced Research</span> (2025).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1016/j.jare.2025.01.036" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 11 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2020">
-          <div class="font-semibold text-dark-text pub-title">The role of miRNAs in cancer stem cells (CSCs)</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2024">
+          <div class="font-semibold text-dark-text pub-title">Curcumin, piperine and taurine combination enhances the efficacy of transarterial chemoembolization therapy in patients with intermediate stage hepatocellular carcinoma: A pilot study</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Cancer Stem Cells: New Horizons in Cancer Therapies</span> (2020).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85122143497&doi=10.1016%2fB978-0-12-817290-0.00010-3&partnerID=40&md5=18768a41703672b217e4f16a0487c677" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Asian Pacific Journal of Cancer Prevention</span> (2024).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.31557/APJCP.2024.25.5.1589" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 12 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2020">
-          <div class="font-semibold text-dark-text pub-title">Extracellular matrix glycans, glycan-binding proteins and glycans-based drug delivery systems in cancer therapy</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2024">
+          <div class="font-semibold text-dark-text pub-title">Compartmental syndecan-1 (CD138) expression as a novel prognostic marker in triple-negative metaplastic breast cancer</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">The Role of Extracellular Matrix in Cancer</span> (2020).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85122137021&doi=10.1016%2fB978-0-12-818556-6.00007-1&partnerID=40&md5=038b3294344d5d392095f7c32b508316" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Pathology Research and Practice</span> (2024).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1016/j.prp.2023.154994" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 13 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
-          <div class="font-semibold text-dark-text pub-title">Cathepsin L is A Potential Marker for Triple-Negative Breast Cancer</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2023">
+          <div class="font-semibold text-dark-text pub-title">Tumor suppressor miR-218 directly targets epidermal growth factor receptor (EGFR) expression in triple-negative breast cancer, sensitizing cells to irradiation</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Egyptian Academic Journal of Biological Sciences C, Physiology and Molecular Biology</span> (2019).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85073105574&doi=10.21608%2feajbsc.2019.26817&partnerID=40&md5=3f6d7162b78b544b679b36294726b1c8" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Journal of Cancer Research and Clinical Oncology</span> (2023).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1007/s00432-023-04750-x" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 14 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
-          <div class="font-semibold text-dark-text pub-title">Aptasensor for Quantifying Pancreatic Polypeptide</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2023">
+          <div class="font-semibold text-dark-text pub-title">Anticancer activity of new bis-(3-(thiophen-2-yl)-1H-pyrazol-4-yl)chalcones: Synthesis, in silico, and in vitro studies</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">ACS Omega</span> (2019).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85061334154&doi=10.1021%2facsomega.8b03131&partnerID=40&md5=f378d80c51f2e2ef99ba63049f1625dd" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Polycyclic Aromatic Compounds</span> (2023).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1080/10406638.2022.2046616" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 15 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
-          <div class="font-semibold text-dark-text pub-title">The immunomodulatory role of tumor Syndecan-1 (CD138) on ex vivo tumor microenvironmental CD4+ T cell polarization in inflammatory and non-inflammatory breast cancer patients</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2023">
+          <div class="font-semibold text-dark-text pub-title">Cytotoxic activity, apoptosis induction and cell cycle arrest in human breast cancer (MCF7) cells by a novel fluorinated tetrahydro-[1,2,4]triazolo[3,4-a]isoquinolin chalcone</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">PLOS ONE</span> (2019).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85065406560&doi=10.1371%2fjournal.pone.0217550&partnerID=40&md5=7259ec11c810d297a76c6c8e3120ffc5" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Polycyclic Aromatic Compounds</span> (2023).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1080/10406638.2021.2014535" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 16 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
-          <div class="font-semibold text-dark-text pub-title">Aptamer-mediated colorimetric assay for detection of pancreatic polypeptide hormone (PP) using unmodified gold nanoparticles</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2023">
+          <div class="font-semibold text-dark-text pub-title">Revisiting the syndecans: Master signaling regulators with prognostic and targetable therapeutic values in breast carcinoma</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Microchemical Journal</span> (2019).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85068225330&doi=10.1016%2fj.microc.2019.104037&partnerID=40&md5=653457d07941b44d32a0c64188b08218" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Cancers</span> (2023).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.3390/cancers15061794" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 17 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2018">
-          <div class="font-semibold text-dark-text pub-title">Syndecan-1 (CD138) is essential for metastatic disease in an orthotopic inflammatory breast cancer xenograft model</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2023">
+          <div class="font-semibold text-dark-text pub-title">Chalcones: Promising therapeutic agents targeting key players and signaling pathways regulating the hallmarks of cancer</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Scientific Reports</span> (2018).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85047871650&doi=10.1038%2fs41598-018-26868-x&partnerID=40&md5=63a70a8d6e3c54d3d81b285b5420107e" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Chemico-Biological Interactions</span> (2023).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1016/j.cbi.2022.110297" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 18 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2017">
-          <div class="font-semibold text-dark-text pub-title">Syndecan-1 is a key factor in the development of inflammatory breast cancer</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2023">
+          <div class="font-semibold text-dark-text pub-title">Yttrium oxide nanoparticles induce cytotoxicity, genotoxicity, apoptosis, and ferroptosis in the human triple-negative breast cancer MDA-MB-231 cells</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Oncotarget</span> (2017).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85032890250&doi=10.18632%2foncotarget.21980&partnerID=40&md5=619d08e9d368e718227091444155b4cc" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">BMC Cancer</span> (2023).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1186/s12885-023-11649-w" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 19 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2017">
-          <div class="font-semibold text-dark-text pub-title">Syndecan-1 modulates exosome-mediated microRNA function in inflammatory breast cancer</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2023">
+          <div class="font-semibold text-dark-text pub-title">Editorial: Cancer stem cells as attractive targets for breast cancer therapy</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Scientific Reports</span> (2017).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85018693006&doi=10.1038%2fsrep46399&partnerID=40&md5=f1f4b2383c2e7428f5228514936d9337" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Frontiers in Oncology</span> (2023).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.3389/fonc.2023.1151742" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 20 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2017">
-          <div class="font-semibold text-dark-text pub-title">Immunohistochemical analysis of Syndecan-1 and E-Cadherin expression in inflammatory and non-inflammatory breast carcinoma: Correlation with tumor aggressiveness and metastasis</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2022">
+          <div class="font-semibold text-dark-text pub-title">Synthesis and anticancer activities of novel bis-chalcones incorporating the 1,3-diphenyl-1H-pyrazole moiety: In silico and in vitro studies</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Egyptian Journal of Basic and Applied Sciences</span> (2017).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85028976214&doi=10.1016%2fj.ejbas.2017.07.001&partnerID=40&md5=4dd22a0134e1e4835ac57f66a218d6f3" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Letters in Drug Design and Discovery</span> (2022).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.2174/1570180819666220301151631" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 21 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2016">
-          <div class="font-semibold text-dark-text pub-title">Syndecan-1 promotes angiogenesis in inflammatory breast cancer via the CXCR2/IL-8 axis</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2022">
+          <div class="font-semibold text-dark-text pub-title">Role of adipose tissue-derived cytokines in the progression of inflammatory breast cancer in patients with obesity</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Oncotarget</span> (2016).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-85002954867&doi=10.18632%2foncotarget.12753&partnerID=40&md5=57a9e34e569941a3af8f1c8418047053" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Lipids in Health and Disease</span> (2022).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1186/s12944-022-01678-y" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 22 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2016">
-          <div class="font-semibold text-dark-text pub-title">Syndecan-1 expression correlates with tumor grade and size and promotes the invasive phenotype of inflammatory breast cancer</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2022">
+          <div class="font-semibold text-dark-text pub-title">Differential impact of membrane-bound and soluble forms of the prognostic marker syndecan-1 on the invasiveness, migration, apoptosis, and proliferation of cervical cancer cells</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Breast Cancer Research and Treatment</span> (2016).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-84955743003&doi=10.1007%2fs10549-016-3733-1&partnerID=40&md5=4169528f87b8d7a126588019ac105574" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Frontiers in Oncology</span> (2022).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.3389/fonc.2022.803899" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 23 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2016">
-          <div class="font-semibold text-dark-text pub-title">MicroRNA-210-3p is a critical regulator of inflammatory breast cancer stem cells</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2022">
+          <div class="font-semibold text-dark-text pub-title">[1,2,4]Triazolo[3,4-a]isoquinoline chalcone derivative exhibits anticancer activity via induction of oxidative stress, DNA damage, and apoptosis in Ehrlich solid carcinoma-bearing mice</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Scientific Reports</span> (2016).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-84988775266&doi=10.1038%2fsrep34346&partnerID=40&md5=723049b40026e632b847849e7b415ec7" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Naunyn-Schmiedeberg’s Archives of Pharmacology</span> (2022).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1007/s00210-022-02269-5" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 24 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2016">
-          <div class="font-semibold text-dark-text pub-title">Syndecan-1 promotes CXCR2-dependent tumour growth in a mouse model of inflammatory breast cancer</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
+          <div class="font-semibold text-dark-text pub-title">EGFR-dependent extracellular matrix protein interactions might light a candle in cell behavior of non-small cell lung cancer</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">European Journal of Cancer</span> (2016).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-84988514104&doi=10.1016%2fj.ejca.2016.09.006&partnerID=40&md5=465f2a15998a4af86edb071661339659" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Frontiers in Oncology</span> (2021).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.3389/fonc.2021.766659" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 25 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2015">
-          <div class="font-semibold text-dark-text pub-title">Prognostic relevance of microRNAs in inflammatory breast cancer</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
+          <div class="font-semibold text-dark-text pub-title">Syndecan-1 promotes angiogenesis in triple-negative breast cancer through the prognostically relevant tissue factor pathway and additional angiogenic routes</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Annals of Oncology</span> (2015).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-84954044820&doi=10.1093%2fannonc%2fmdv480&partnerID=40&md5=2a8e63968413b567b58c82669e2c608f" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">Cancers</span> (2021).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.3390/cancers13102318" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 26 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2015">
-          <div class="font-semibold text-dark-text pub-title">Syndecan-1 expression in inflammatory breast cancer: A novel mechanism for tumor-stromal interaction</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
+          <div class="font-semibold text-dark-text pub-title">Impact of type 2 diabetes mellitus on the immunoregulatory characteristics of adipose tissue-derived mesenchymal stem cells</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Cancer Research</span> (2015).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-84949575932&doi=10.1158%2f1538-7445.AM2015-3760&partnerID=40&md5=3d31481b212f45c2f33f81e33be32463" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">International Journal of Biochemistry and Cell Biology</span> (2021).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1016/j.biocel.2021.106072" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
 
         <!-- Publication 27 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2013">
-          <div class="font-semibold text-dark-text pub-title">Syndecan-1 protects against inflammatory injury in experimental colitis</div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
+          <div class="font-semibold text-dark-text pub-title">Small extracellular vesicle-encapsulated miR-181b-5p, miR-222-3p and let-7a-5p: Next generation plasma biopsy-based diagnostic biomarkers for inflammatory breast cancer</div>
           <div class="text-xs text-muted-text mt-1">
-            Journal: <span class="pub-journal">Inflammatory Bowel Diseases</span> (2013).
-            <a class="text-primary-blue hover:underline" href="https://www.scopus.com/inward/record.uri?eid=2-s2.0-84877712398&doi=10.1097%2fMIB.0b013e31828f411b&partnerID=40&md5=567c9c058728a411516e8869c97b83f3" target="_blank" rel="noopener">View publication</a>
+            Journal: <span class="pub-journal">PLoS ONE</span> (2021).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1371/journal.pone.0250642" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 28 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
+          <div class="font-semibold text-dark-text pub-title">The heparan sulfate proteoglycan syndecan-1 regulates colon cancer stem cell function via a focal adhesion kinase–Wnt signaling axis</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">FEBS Journal</span> (2021).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1111/febs.15356" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 29 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
+          <div class="font-semibold text-dark-text pub-title">Cell behavior of non-small cell lung cancer is at EGFR and microRNAs hands</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">International Journal of Molecular Sciences</span> (2021).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.3390/ijms222212496" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 30 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2021">
+          <div class="font-semibold text-dark-text pub-title">Role of syndecan-1 in cancer stem cells.</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">Biology of Extracellular Matrix</span> (2021).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1007/978-3-030-73453-4_12" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 31 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2020">
+          <div class="font-semibold text-dark-text pub-title">HS2ST1-dependent signaling pathways determine breast cancer cell viability, matrix interactions, and invasive behavior</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">Cancer Science</span> (2020).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1111/cas.14539" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 32 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2020">
+          <div class="font-semibold text-dark-text pub-title">Infrared microspectroscopy and imaging analysis of inflammatory and non-inflammatory breast cancer cells and their GAG secretome</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">Molecules</span> (2020).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.3390/molecules25184300" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 33 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2020">
+          <div class="font-semibold text-dark-text pub-title">Induction of heparanase via IL-10 correlates with a high infiltration of CD163⁺ M2-type tumor-associated macrophages in inflammatory breast carcinomas</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">Matrix Biology Plus</span> (2020).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1016/j.mbplus.2020.100030" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 34 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2020">
+          <div class="font-semibold text-dark-text pub-title">Knockdown of Musashi RNA binding proteins decreases radioresistance but enhances cell motility and invasion in triple-negative breast cancer</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">International Journal of Molecular Sciences</span> (2020).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.3390/ijms21062169" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 35 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2020">
+          <div class="font-semibold text-dark-text pub-title">Inflammatory breast carcinoma: Elevated microRNA miR-181b-5p and reduced miR-200b-3p, miR-200c-3p, and miR-203a-3p expression as potential biomarkers with diagnostic value</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">Biomolecules</span> (2020).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.3390/biom10071059" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 36 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
+          <div class="font-semibold text-dark-text pub-title">Inflammatory breast cancer: Activation of the aryl hydrocarbon receptor and its target CYP1B1 correlates closely with Wnt5a/b–β-catenin signalling, the stem cell phenotype and disease progression</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">Journal of Advanced Research</span> (2019).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1016/j.jare.2018.11.006" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 37 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
+          <div class="font-semibold text-dark-text pub-title">Anti-proliferative effect of chitosan nanoparticles (extracted from crayfish Procambarus clarkii, Crustacea: Cambaridae) against MDA-MB-231 and SK-BR-3 human breast cancer cell lines</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">International Journal of Biological Macromolecules</span> (2019).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1016/j.ijbiomac.2018.12.151" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 38 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
+          <div class="font-semibold text-dark-text pub-title">The immunomodulatory role of tumor syndecan-1 (CD138) on ex vivo tumor microenvironmental CD4⁺ T cell polarization in inflammatory and non-inflammatory breast cancer patients</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">PLoS ONE</span> (2019).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1371/journal.pone.0217550" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 39 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
+          <div class="font-semibold text-dark-text pub-title">Tumor microenvironmental plasmacytoid dendritic cells contribute to breast cancer lymph node metastasis via CXCR4/SDF-1 axis</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">Breast Cancer Research and Treatment</span> (2019).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1007/s10549-019-05129-8" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 40 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
+          <div class="font-semibold text-dark-text pub-title">The regulatory role of syndecan-1 on human miR-222-3p expression in breast cancer cell lines</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">Egyptian Journal of Histology</span> (2019).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.21608/ejh.2019.6670.1054" target="_blank" rel="noopener">View publication</a>
+          </div>
+        </div>
+
+        <!-- Publication 41 -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
+          <div class="font-semibold text-dark-text pub-title">Aptasensor for quantifying pancreatic polypeptide.</div>
+          <div class="text-xs text-muted-text mt-1">
+            Journal: <span class="pub-journal">ACS Omega</span> (2019).
+            <a class="text-primary-blue hover:underline" href="https://doi.org/10.1021/acsomega.8b03131" target="_blank" rel="noopener">View publication</a>
           </div>
         </div>
       </div>
       <!-- Toggle Button for Publications -->
       <div class="flex justify-center mt-4">
-          <button id="toggle-publications-btn" data-type="Publications" class="text-primary-blue font-semibold hover:underline transition duration-150">Show 24 more Publications</button>
+          <button id="toggle-publications-btn" data-type="Publications" class="text-primary-blue font-semibold hover:underline transition duration-150">Show 38 more Publications</button>
       </div>
     </section>
 
@@ -728,12 +873,12 @@
     function setupToggleList(buttonId, itemClass) {
         const button = document.getElementById(buttonId);
         const listContainer = button.closest('section').querySelector('.grid.gap-4');
-        const allItems = Array.from(listContainer.querySelectorAll('.pub-item, .more-projects-item')); // Include all potential items
+        const allItems = Array.from(listContainer.querySelectorAll('.pub-item, .more-projects-item')); 
         const initiallyHiddenItems = Array.from(listContainer.querySelectorAll(`.${itemClass}`));
 
         let expanded = false;
         
-        // Count how many items are initially hidden that are NOT display:none from filtering
+        // Count how many items are currently hidden that are NOT display:none from filtering
         function getVisibleHiddenCount() {
             return initiallyHiddenItems.filter(item => item.style.display !== 'none' && item.classList.contains('hidden')).length;
         }
@@ -826,11 +971,22 @@
             const yearA = parseInt(a.getAttribute('data-year'));
             const yearB = parseInt(b.getAttribute('data-year'));
 
+            // Sort by year
+            let yearComparison = 0;
             if (sortValue === 'year-desc') {
-                return yearB - yearA;
+                yearComparison = yearB - yearA;
             } else { // year-asc
-                return yearA - yearB;
+                yearComparison = yearA - yearB;
             }
+
+            // If years are the same, secondary sort by title (alphabetical) for consistency
+            if (yearComparison === 0) {
+                const titleA = a.querySelector('.pub-title').textContent;
+                const titleB = b.querySelector('.pub-title').textContent;
+                return titleA.localeCompare(titleB);
+            }
+
+            return yearComparison;
         });
 
         // 3. Render and Apply Toggle Visibility
@@ -891,7 +1047,16 @@
         });
     });
 
+    // --- COLLAPSIBLE CONTROL TOGGLE ---
+    const pubControlsBtn = document.getElementById('toggle-pub-controls-btn');
+    const pubControlsContent = document.getElementById('pub-controls');
+    const filterIcon = document.getElementById('filter-icon');
 
+    pubControlsBtn.addEventListener('click', () => {
+        const isOpen = pubControlsContent.classList.toggle('open');
+        filterIcon.classList.toggle('rotate-180', isOpen);
+    });
+    
     // --- INITIALIZATION ---
 
     // The publications list is complex due to filtering, so we call its render function directly and setup the toggle.
