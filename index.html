@@ -120,7 +120,7 @@
         height: 2px;
         bottom: 0;
         left: 50%;
-        background-color: #0077b6; /* Use primary-blue variable */
+        background-color: var(--primary-blue);
         transition: width 0.3s ease, left 0.3s ease;
     }
     .nav-link:hover::after {
@@ -138,7 +138,7 @@
         max-height: 500px; /* Sufficiently large value for content to fit */
     }
 
-    /* 5. Animated Flip Card for Lab Head */
+    /* 5. Flip Card Animation */
     .flip-card {
       perspective: 1000px;
     }
@@ -158,12 +158,14 @@
       height: 100%;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
-      border-radius: 1rem; /* match card rounding */
+      border-radius: 1rem; /* rounded-2xl */
     }
     .flip-card-back {
       transform: rotateY(180deg);
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      color: white;
+      padding: 1.5rem; /* p-6 */
     }
-
   </style>
 </head>
 <body class="bg-light-bg text-dark-text">
@@ -176,7 +178,6 @@
       <div class="flex items-center gap-3">
         <img class="w-16 h-16 rounded-xl object-contain shadow-md" 
              src="logo.png.png" 
-             onerror="this.onerror=null; this.src='https://placehold.co/64x64/E6F3FF/0A1A2F?text=CMBRL';"
              alt="CMBRL logo" />
         <span class="brand-name font-black text-primary-blue">Cellular & Molecular Biosciences Research Lab (CMBRL)</span>
       </div>
@@ -216,7 +217,7 @@
           <a class="text-dark-text hover:text-primary-blue transition duration-150 border-b border-gray-100 pb-2" href="#team">Team</a>
           <a class="text-dark-text hover:text-primary-blue transition duration-150 border-b border-gray-100 pb-2" href="#research">Research</a>
           <a class="text-dark-text hover:text-primary-blue transition duration-150 border-b border-gray-100 pb-2" href="#projects">Projects</a>
-          <a class="text-dark-text hover:text-primary-blue transition duration-1G00 pb-2" href="#publications">Publications</a>
+          <a class="text-dark-text hover:text-primary-blue transition duration-150 border-b border-gray-100 pb-2" href="#publications">Publications</a>
           <a class="text-dark-text hover:text-primary-blue transition duration-150 border-b border-gray-100 pb-2" href="#news">News</a>
           <a class="text-dark-text hover:text-primary-blue transition duration-150" href="#contact">Contact</a>
       </div>
@@ -224,24 +225,22 @@
 
   <main>
 
-    <!-- NEW Lab Head Section -->
-    <section id="lab-head" class="hero-max mx-auto px-4 py-8 md:py-12 flex justify-center">
-      <div class="flip-card w-full max-w-md h-64">
+    <!-- Lab Head Animated Card Section -->
+    <section class="hero-max mx-auto flex justify-center items-center px-4 py-8 md:py-12">
+      <div class="flip-card w-full max-w-sm h-64">
         <div class="flip-card-inner">
-          
           <!-- Card Front -->
-          <div class="flip-card-front bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center justify-center text-center border border-gray-100">
-            <img class="w-24 h-24 rounded-full object-cover border-4 border-primary-blue/30 shadow-lg" 
+          <div class="flip-card-front flex flex-col items-center justify-center bg-white rounded-2xl shadow-xl p-6 border border-gray-100 card-hover">
+            <img class="w-32 h-32 rounded-full object-cover border-4 border-primary-blue/30 shadow-lg" 
                  src="sherif-ibrahim.jpg" 
-                 onerror="this.onerror=null; this.src='https://placehold.co/96x96/0077B6/FFFFFF?text=PI';"
                  alt="Headshot of Prof. Dr. Sherif Abdelaziz Ibrahim" />
-            <h2 class="text-2xl font-bold text-dark-text mt-4">Prof. Dr. Sherif A. Ibrahim</h2>
-            <p class="text-primary-blue font-semibold">Lab Head & Founder</p>
-            <span class="text-xs text-muted-text mt-3">(Hover for details)</span>
+            <strong class="text-dark-text text-xl font-bold mt-4">Prof. Dr. Sherif Abdelaziz Ibrahim</strong>
+            <span class="text-primary-blue font-semibold">Head & Founder</span>
+            <span class="text-xs text-muted-text mt-4 animate-pulse">Hover for details</span>
           </div>
           
           <!-- Card Back -->
-          <div class="flip-card-back bg-primary-blue text-white p-6 flex flex-col justify-center text-left">
+          <div class="flip-card-back flex flex-col justify-center text-center">
             <h3 class="text-xl font-bold mb-2">Prof. Dr. Sherif A. Ibrahim</h3>
             <p class="text-sm">Professor of Cell and Cancer Biology</p>
             <p class="text-sm">Ph.D Münster, Germany (2011)</p>
@@ -250,7 +249,6 @@
               Defining molecular signatures in inflammatory breast cancer (IBC) and its microenvironment, focusing on Syndecan-1, cancer stem cells, and exosomes.
             </p>
           </div>
-
         </div>
       </div>
     </section>
@@ -276,13 +274,13 @@
           <a class="inline-flex items-center gap-2 px-5 py-3 text-white font-semibold rounded-xl transition duration-150 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" 
              style="background: linear-gradient(135deg, #0077b6, #00b4d8);" 
              href="#publications">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-              Browse publications
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+             Browse publications
           </a>
           <a class="inline-flex items-center gap-2 px-5 py-3 text-dark-text border border-gray-300 bg-gray-50 font-medium rounded-xl hover:bg-white transition duration-150" 
              href="#contact">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2c.5 0 1 .5 1 1v18c0 .5-.5 1-1 1H2.5c-.5 0-1-.5-1-1V3c0-.5.5-1 1-1h19z"></path><path d="M10 10l-6 6"></path><path d="M14 10l6 6"></path></svg>
-              Get in touch
+             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2c.5 0 1 .5 1 1v18c0 .5-.5 1-1 1H2.5c-.5 0-1-.5-1-1V3c0-.5.5-1 1-1h19z"></path><path d="M10 10l-6 6"></path><path d="M14 10l6 6"></path></svg>
+             Get in touch
           </a>
         </div>
       </div>
@@ -339,7 +337,6 @@
         <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md border border-gray-100 card-hover">
           <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-blue/30" 
                src="sherif-ibrahim.jpg" 
-               onerror="this.onerror=null; this.src='https://placehold.co/64x64/E6F3FF/0A1A2F?text=SI';"
                alt="Headshot of Prof. Dr. Sherif Abdelaziz Ibrahim" />
           <div>
             <strong class="text-dark-text">Prof. Dr. Sherif Abdelaziz Ibrahim</strong><br>
@@ -351,7 +348,6 @@
         <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md border border-gray-100 card-hover">
           <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-blue/30" 
                src="logo.png.png" 
-               onerror="this.onerror=null; this.src='https://placehold.co/64x64/E6F3FF/0A1A2F?text=HH';"
                alt="Headshot of Dr. Hebatallah Hassan" />
           <div>
             <strong class="text-dark-text">Dr. Hebatallah Hassan</strong><br>
@@ -363,7 +359,6 @@
         <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md border border-gray-100 card-hover">
           <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-blue/30" 
                src="amr-walyeldden..jpg" 
-               onerror="this.onerror=null; this.src='https://placehold.co/64x64/E6F3FF/0A1A2F?text=AW';"
                alt="Headshot of Mr. Amr Ahmed WalyEldden" />
           <div>
             <strong class="text-dark-text">Mr. Amr Ahmed WalyEldden</strong><br>
@@ -371,12 +366,11 @@
           </div>
         </div>
         
-        <!-- Team Member 4: Mrs. Liali Yousef Talat -->
+        <!-- Team Member 4: Ms. Liali Yousef Talat -->
         <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md border border-gray-100 card-hover">
           <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-blue/30" 
                src="liali-yousef-talat.jpeg" 
-               onerror="this.onerror=null; this.src='https://placehold.co/64x64/E6F3FF/0A1A2F?text=LT';"
-               alt="Headshot of Mrs. Liali Yousef Talat" />
+               alt="Headshot of Ms. Liali Yousef Talat" />
           <div>
             <strong class="text-dark-text">Ms. Liali Yousef Talat</strong><br>
             <span class="text-sm text-muted-text">PhD Student • Senior Researcher</span>
@@ -387,7 +381,6 @@
         <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md border border-gray-100 card-hover">
           <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-blue/30" 
                src="logo.png.png" 
-               onerror="this.onerror=null; this.src='https.placehold.co/64x64/E6F3FF/0A1A2F?text=MM';"
                alt="Headshot of Mrs. Maysaa Maher" />
           <div>
             <strong class="text-dark-text">Mrs. Maysaa Maher</strong><br>
@@ -835,7 +828,7 @@
         </div>
 
         <!-- Publication 37 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2Player.js">
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
           <div class="font-semibold text-dark-text pub-title">Anti-proliferative effect of chitosan nanoparticles (extracted from crayfish Procambarus clarkii, Crustacea: Cambaridae) against MDA-MB-231 and SK-BR-3 human breast cancer cell lines</div>
           <div class="text-xs text-muted-text mt-1">
             Journal: <span class="pub-journal">International Journal of Biological Macromolecules</span> (2019).
@@ -871,7 +864,7 @@
         </div>
 
         <!-- Publication 41 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2Player.js">
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
           <div class="font-semibold text-dark-text pub-title">Aptasensor for quantifying pancreatic polypeptide.</div>
           <div class="text-xs text-muted-text mt-1">
             Journal: <span class="pub-journal">ACS Omega</span> (2019).
@@ -937,49 +930,26 @@
     // --- GENERIC TOGGLE FUNCTIONALITY (Projects/Publications) ---
     function setupToggleList(buttonId, itemClass) {
         const button = document.getElementById(buttonId);
-        // Check if button exists before proceeding
-        if (!button) {
-            console.warn(`Toggle button with id "${buttonId}" not found.`);
-            return;
-        }
-
-        const section = button.closest('section');
-        if (!section) {
-            console.warn(`No parent <section> found for button "${buttonId}".`);
-            return;
-        }
-
-        const listContainer = section.querySelector('.grid.gap-4');
-        if (!listContainer) {
-            console.warn(`No ".grid.gap-4" container found in section for button "${buttonId}".`);
-            return;
-        }
+        const listContainer = button.closest('section').querySelector('.grid.gap-4');
         
-        // This is the function that will update the button text
-        let updateButtonText;
-
-        // Find all items that *could* be toggled (initially hidden ones)
-        const initiallyHiddenItems = Array.from(listContainer.querySelectorAll(`.${itemClass}`));
         let expanded = false;
         
-        // Count how many items are currently hidden *that are part of this toggle group*
-        // and *are not hidden by filtering* (i.e., style.display is not 'none')
+        // Count how many items are currently hidden that are NOT display:none from filtering
         function getVisibleHiddenCount() {
-            return initiallyHiddenItems.filter(item => {
-                return item.classList.contains('hidden') && item.style.display !== 'none';
-            }).length;
+            // Re-query the list container to find items that are part of the toggle-set
+            // and are currently marked as 'hidden' but are not 'display: none' from filtering.
+            const currentHiddenItems = Array.from(listContainer.querySelectorAll(`.${itemClass}.hidden`));
+            return currentHiddenItems.filter(item => item.style.display !== 'none').length;
         }
 
-        updateButtonText = () => {
+        function updateButtonText() {
             const type = button.getAttribute('data-type');
             const count = getVisibleHiddenCount();
             
             if (count === 0 && !expanded) {
-                // If there are no items to show, hide the button
                 button.classList.add('hidden');
                 return;
             } else {
-                // Make sure button is visible if items appear
                 button.classList.remove('hidden');
             }
 
@@ -988,13 +958,15 @@
             } else {
                 button.innerHTML = `Show ${count} more ${type}`;
             }
-        };
+        }
 
         button.addEventListener('click', () => {
             expanded = !expanded;
             
-            // Toggle only the items that are part of this group and not filtered out
-            initiallyHiddenItems.forEach(item => {
+            // Re-query the list of items that need toggling
+            const itemsToToggle = Array.from(listContainer.querySelectorAll(`.${itemClass}`));
+
+            itemsToToggle.forEach(item => {
                 if (item.style.display !== 'none') {
                     item.classList.toggle('hidden', !expanded);
                 }
@@ -1002,182 +974,164 @@
             updateButtonText();
         });
         
-        // Expose a function to be called externally (e.g., by the filter logic)
-        button.updateText = (isReset = false) => {
-            if (isReset && expanded) {
-                // If filtering is reset, collapse the list
-                expanded = false;
-                initiallyHiddenItems.forEach(item => {
-                    // Re-hide items that should be hidden
-                    if (item.style.display !== 'none') { // only touch non-filtered items
-                        item.classList.add('hidden');
-                    }
-                });
-            }
-            updateButtonText();
+        // Function exposed for external use (e.g., after filtering/sorting)
+        button.updateText = () => {
+             // Reset state when new filtering/sorting happens
+             if (expanded) {
+                 expanded = false;
+             }
+             
+             // Re-query ALL items in the list container that match the toggle class
+             // This is crucial after filtering/re-ordering
+             const allToggleableItems = Array.from(listContainer.querySelectorAll(`.${itemClass}`));
+             
+             allToggleableItems.forEach(item => {
+                 // Ensure the correct state (hidden) if it's not set to display:none by the filter
+                 if (item.style.display !== 'none') {
+                     item.classList.add('hidden');
+                 }
+             });
+             
+             updateButtonText();
         };
 
-        // Initial call to set button text
         updateButtonText();
     }
 
     // --- PUBLICATION SEARCH/SORT/FILTER FUNCTIONALITY ---
-    function setupPublicationFilter() {
-        const publicationList = document.getElementById('publication-list');
-        if (!publicationList) return; // Exit if no publication list
 
-        const pubItems = Array.from(publicationList.querySelectorAll('.pub-item'));
-        const pubToggleBtn = document.getElementById('toggle-publications-btn');
-        const pubSearch = document.getElementById('pub-search');
-        const pubSort = document.getElementById('pub-sort');
-        const pubFilterYear = document.getElementById('pub-filter-year');
+    const publicationList = document.getElementById('publication-list');
+    const pubItems = Array.from(publicationList.querySelectorAll('.pub-item'));
+    const pubToggleBtn = document.getElementById('toggle-publications-btn');
+    const pubSearch = document.getElementById('pub-search');
+    const pubSort = document.getElementById('pub-sort');
+    const pubFilterYear = document.getElementById('pub-filter-year');
+    
+    // Extract unique years for the filter dropdown
+    const years = [...new Set(pubItems.map(item => item.getAttribute('data-year')))].sort((a, b) => b - a);
+    years.forEach(year => {
+        const option = document.createElement('option');
+        option.value = year;
+        option.textContent = year;
+        pubFilterYear.appendChild(option);
+    });
 
-        if (!pubToggleBtn || !pubSearch || !pubSort || !pubFilterYear) {
-            console.warn("One or more publication filter controls are missing.");
-            return;
-        }
+    function applyFiltersAndSort() {
+        const searchQuery = pubSearch.value.toLowerCase();
+        const sortValue = pubSort.value;
+        const filterYear = pubFilterYear.value;
 
-        // Extract unique years for the filter dropdown
-        const years = [...new Set(pubItems.map(item => item.getAttribute('data-year')))].sort((a, b) => b - a);
-        years.forEach(year => {
-            const option = document.createElement('option');
-            option.value = year;
-            option.textContent = year;
-            pubFilterYear.appendChild(option);
+        // 1. Filtering (by Search and Year)
+        let filteredItems = pubItems.filter(item => {
+            const title = item.querySelector('.pub-title').textContent.toLowerCase();
+            const journal = item.querySelector('.pub-journal').textContent.toLowerCase();
+            const year = item.getAttribute('data-year');
+            
+            const matchesSearch = title.includes(searchQuery) || journal.includes(searchQuery);
+            const matchesYear = !filterYear || year === filterYear;
+            
+            return matchesSearch && matchesYear;
         });
 
-        function applyFiltersAndSort() {
-            const searchQuery = pubSearch.value.toLowerCase();
-            const sortValue = pubSort.value;
-            const filterYear = pubFilterYear.value;
+        // 2. Sorting
+        filteredItems.sort((a, b) => {
+            const yearA = parseInt(a.getAttribute('data-year'));
+            const yearB = parseInt(b.getAttribute('data-year'));
 
-            // 1. Filtering (by Search and Year)
-            let filteredItems = pubItems.filter(item => {
-                const title = item.querySelector('.pub-title').textContent.toLowerCase();
-                const journal = item.querySelector('.pub-journal').textContent.toLowerCase();
-                const year = item.getAttribute('data-year');
-                
-                const matchesSearch = title.includes(searchQuery) || journal.includes(searchQuery);
-                const matchesYear = !filterYear || year === filterYear;
-                
-                // Hide or show based on filter (will be sorted later)
-                const matches = matchesSearch && matchesYear;
-                item.style.display = matches ? '' : 'none'; // Use style.display for filtering
-                return matches;
-            });
-
-            // 2. Sorting (only the filtered items)
-            filteredItems.sort((a, b) => {
-                const yearA = parseInt(a.getAttribute('data-year'));
-                const yearB = parseInt(b.getAttribute('data-year'));
-
-                let yearComparison = 0;
-                if (sortValue === 'year-desc') {
-                    yearComparison = yearB - yearA;
-                } else { // year-asc
-                    yearComparison = yearA - yearB;
-                }
-
-                if (yearComparison === 0) {
-                    const titleA = a.querySelector('.pub-title').textContent;
-                    const titleB = b.querySelector('.pub-title').textContent;
-                    return titleA.localeCompare(titleB);
-                }
-                return yearComparison;
-            });
-
-            // 3. Render and Apply Toggle Visibility
-            publicationList.innerHTML = ''; // Clear the list
-            const visibleCount = 3; 
-
-            filteredItems.forEach((item, index) => {
-                // Reset toggle classes
-                item.classList.remove('more-publications-item', 'hidden');
-
-                if (index < visibleCount) {
-                    // First 3 items are always visible
-                    item.classList.remove('hidden');
-                } else {
-                    // Items beyond the first 3 are hidden and marked for toggle
-                    item.classList.add('more-publications-item', 'hidden');
-                }
-                publicationList.appendChild(item); // Add back to DOM in sorted order
-            });
-
-            // 4. Update Toggle Button and Handle Empty Results
-            if (filteredItems.length === 0) {
-                publicationList.innerHTML = '<div class="text-center text-muted-text p-8">No publications match your current filters.</div>';
-                pubToggleBtn.style.display = 'none';
-            } else if (filteredItems.length <= visibleCount) {
-                pubToggleBtn.style.display = 'none';
-            } else {
-                pubToggleBtn.style.display = '';
-                // Update the button text and reset its expanded state
-                if (pubToggleBtn.updateText) {
-                    pubToggleBtn.updateText(true); // Pass 'true' to signal a reset
-                }
+            // Sort by year
+            let yearComparison = 0;
+            if (sortValue === 'year-desc') {
+                yearComparison = yearB - yearA;
+            } else { // year-asc
+                yearComparison = yearA - yearB;
             }
+
+            // If years are the same, secondary sort by title (alphabetical) for consistency
+            if (yearComparison === 0) {
+                const titleA = a.querySelector('.pub-title').textContent;
+                const titleB = b.querySelector('.pub-title').textContent;
+                return titleA.localeCompare(titleB);
+            }
+
+            return yearComparison;
+        });
+
+        // 3. Render and Apply Toggle Visibility
+        publicationList.innerHTML = '';
+        const visibleCount = 3; 
+
+        filteredItems.forEach((item, index) => {
+            item.style.display = ''; // Ensure item is ready to be displayed
+
+            // Clear previous toggle classes
+            item.classList.remove('more-publications-item', 'hidden');
+
+            if (index < visibleCount) {
+                // First 3 items are always visible
+                item.classList.remove('hidden');
+            } else {
+                // Items beyond the first 3 are hidden and marked for toggle
+                item.classList.add('more-publications-item', 'hidden');
+            }
+            publicationList.appendChild(item);
+        });
+
+        // 4. Update Toggle Button and Handle Empty Results
+        if (filteredItems.length === 0) {
+            publicationList.innerHTML = '<div class="text-center text-muted-text p-8">No publications match your current filters.</div>';
+            pubToggleBtn.style.display = 'none';
+        } else if (filteredItems.length <= visibleCount) {
+            pubToggleBtn.style.display = 'none';
+        } else {
+            pubToggleBtn.style.display = '';
+            // Update the button text, which resets the toggle state
+            pubToggleBtn.updateText();
         }
-
-        // Attach listeners to controls
-        pubSearch.addEventListener('input', applyFiltersAndSort);
-        pubSort.addEventListener('change', applyFiltersAndSort);
-        pubFilterYear.addEventListener('change', applyFiltersAndSort);
-
-        // Initial setup
-        setupToggleList('toggle-publications-btn', 'more-publications-item');
-        applyFiltersAndSort(); // Run once on load to sort and hide
     }
-    
+
+    // Attach listeners to controls
+    pubSearch.addEventListener('input', applyFiltersAndSort);
+    pubSort.addEventListener('change', applyFiltersAndSort);
+    pubFilterYear.addEventListener('change', applyFiltersAndSort);
 
     // --- MOBILE MENU SETUP ---
-    function setupMobileMenu() {
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
-        const mobileMenuClose = document.getElementById('mobile-menu-close');
-        
-        if (!mobileMenu || !mobileMenuToggle || !mobileMenuClose) return;
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    
+    mobileMenuToggle.addEventListener('click', () => {
+        mobileMenu.classList.add('open');
+    });
 
-        mobileMenuToggle.addEventListener('click', () => {
-            mobileMenu.classList.add('open');
-        });
+    mobileMenuClose.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+    });
 
-        mobileMenuClose.addEventListener('click', () => {
+    // Close menu when clicking a navigation link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
             mobileMenu.classList.remove('open');
         });
-
-        // Close menu when clicking a navigation link
-        mobileMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-            });
-        });
-    }
+    });
 
     // --- COLLAPSIBLE CONTROL TOGGLE ---
-    function setupCollapsibleControls() {
-        const pubControlsBtn = document.getElementById('toggle-pub-controls-btn');
-        const pubControlsContent = document.getElementById('pub-controls');
-        const filterIcon = document.getElementById('filter-icon');
+    const pubControlsBtn = document.getElementById('toggle-pub-controls-btn');
+    const pubControlsContent = document.getElementById('pub-controls');
+    const filterIcon = document.getElementById('filter-icon');
 
-        if (!pubControlsBtn || !pubControlsContent || !filterIcon) return;
-
-        pubControlsBtn.addEventListener('click', () => {
-            const isOpen = pubControlsContent.classList.toggle('open');
-            filterIcon.classList.toggle('rotate-180', isOpen);
-        });
-    }
+    pubControlsBtn.addEventListener('click', () => {
+        const isOpen = pubControlsContent.classList.toggle('open');
+        filterIcon.classList.toggle('rotate-180', isOpen);
+    });
     
     // --- INITIALIZATION ---
-    // Use DOMContentLoaded to ensure all elements are loaded before scripts run
-    document.addEventListener('DOMContentLoaded', () => {
-        setupMobileMenu();
-        setupCollapsibleControls();
-        setupPublicationFilter();
-        
-        // Initialize the toggle functionality for Projects
-        setupToggleList('toggle-projects-btn', 'more-projects-item');
-    });
+
+    // The publications list is complex due to filtering, so we call its render function directly and setup the toggle.
+    setupToggleList('toggle-publications-btn', 'more-publications-item');
+    applyFiltersAndSort(); 
+
+    // Initialize the toggle functionality for Projects (4 hidden items)
+    setupToggleList('toggle-projects-btn', 'more-projects-item');
     
   </script>
 </body>
