@@ -36,16 +36,9 @@
               '90%': { transform: 'translate(15%, 5%)' },
               '100%': { transform: 'translate(0, 0)' },
             },
-            // 1. Add keyframe for fade-in animation
-            fadeInUp: {
-              '0%': { opacity: '0', transform: 'translateY(20px)' },
-              '100%': { opacity: '1', transform: 'translateY(0)' },
-            }
           },
           animation: {
             noise: 'noise 30s infinite alternate',
-            // 2. Register fade-in animation
-            'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
           },
         },
       },
@@ -174,13 +167,15 @@
       padding: 1.5rem; /* p-6 */
     }
 
-    /* 3. CSS for fade-in animation */
-    .animated-item {
+    /* 6. Fade-in-on-scroll Animation */
+    .fade-in {
       opacity: 0;
-      /* Animation will be applied by JS */
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
-    .animated-item.is-visible {
-      animation: fadeInUp 0.6s ease-out forwards;
+    .fade-in.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
   </style>
@@ -243,8 +238,8 @@
   <main>
 
     <!-- Lab Head Animated Card Section -->
-    <!-- Increased spacing: py-12 md:py-16 -->
-    <section class="hero-max mx-auto flex justify-center items-center px-4 py-12 md:py-16 animated-item">
+    <!-- Add 'fade-in' class for animation -->
+    <section class="hero-max mx-auto flex justify-center items-center px-4 py-8 md:py-12 fade-in">
       <div class="flip-card w-full max-w-sm h-64">
         <div class="flip-card-inner">
           <!-- Card Front -->
@@ -271,10 +266,9 @@
       </div>
     </section>
 
-    <!-- Increased spacing: py-12 md:py-16 -->
-    <section class="hero hero-max mx-auto grid lg:grid-cols-12 gap-8 px-4 py-12 md:py-16">
-      <!-- Add animated-item to cards -->
-      <div class="card bg-white rounded-2xl shadow-xl p-6 lg:p-8 lg:col-span-8 animated-item" style="animation-delay: 100ms;">
+    <section class="hero hero-max mx-auto grid lg:grid-cols-12 gap-8 px-4 py-8 md:py-12">
+      <!-- Add 'fade-in' class for animation -->
+      <div class="card bg-white rounded-2xl shadow-xl p-6 lg:p-8 lg:col-span-8 fade-in" style="transition-delay: 100ms;">
         <h1 class="h1 text-dark-text">We explore <em>ideas</em> that matter.</h1>
         <p class="text-muted-text mt-4 leading-relaxed">
           Cellular and Molecular Biosciences Research Laboratory at Cairo University.
@@ -304,7 +298,8 @@
           </a>
         </div>
       </div>
-      <div class="card bg-white rounded-2xl shadow-xl p-6 lg:col-span-4 animated-item" style="animation-delay: 200ms;">
+      <!-- Add 'fade-in' class for animation -->
+      <div class="card bg-white rounded-2xl shadow-xl p-6 lg:col-span-4 fade-in" style="transition-delay: 200ms;">
         <h2 class="text-xl font-semibold mb-3 text-primary-blue border-b pb-2 border-gray-100">Latest Highlights</h2>
         <ul class="text-muted-text list-disc space-y-2 pl-5">
            <!-- Manually added placeholder highlights -->
@@ -315,8 +310,8 @@
       </div>
     </section>
 
-    <!-- Increased spacing: py-16 md:py-20 -->
-    <section id="about" class="hero-max mx-auto px-4 py-16 md:py-20 animated-item">
+    <!-- Add 'fade-in' class for animation -->
+    <section id="about" class="hero-max mx-auto px-4 py-8 fade-in">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">About the Lab</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
@@ -332,8 +327,8 @@
       </div>
     </section>
 
-    <!-- Increased spacing: py-16 md:py-20 -->
-    <section id="mission" class="hero-max mx-auto px-4 py-16 md:py-20 animated-item">
+    <!-- Add 'fade-in' class for animation -->
+    <section id="mission" class="hero-max mx-auto px-4 py-8 fade-in">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">Mission</h2>
       <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
         <p class="leading-relaxed">
@@ -342,8 +337,8 @@
       </div>
     </section>
 
-    <!-- Increased spacing: py-16 md:py-20 -->
-    <section id="vision" class="hero-max mx-auto px-4 py-16 md:py-20 animated-item">
+    <!-- Add 'fade-in' class for animation -->
+    <section id="vision" class="hero-max mx-auto px-4 py-8 fade-in">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">Vision</h2>
       <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
         <p class="leading-relaxed">
@@ -352,8 +347,8 @@
       </div>
     </section>
 
-    <!-- Increased spacing: py-16 md:py-20 -->
-    <section id="team" class="hero-max mx-auto px-4 py-16 md:py-20 animated-item">
+    <!-- Add 'fade-in' class for animation -->
+    <section id="team" class="hero-max mx-auto px-4 py-8 fade-in">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">Research Team</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         
@@ -415,8 +410,8 @@
       </div>
     </section>
 
-    <!-- Increased spacing: py-16 md:py-20 -->
-    <section id="research" class="hero-max mx-auto px-4 py-16 md:py-20 animated-item">
+    <!-- Add 'fade-in' class for animation -->
+    <section id="research" class="hero-max mx-auto px-4 py-8 fade-in">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">Research Areas</h2>
       <div class="grid md:grid-cols-3 gap-6">
         <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
@@ -437,8 +432,8 @@
       </div>
     </section>
 
-    <!-- Increased spacing: py-16 md:py-20 -->
-    <section id="projects" class="hero-max mx-auto px-4 py-16 md:py-20 animated-item">
+    <!-- Add 'fade-in' class for animation -->
+    <section id="projects" class="hero-max mx-auto px-4 py-8 fade-in">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">Projects & International Collaborations</h2>
       <div class="grid gap-4">
         <!-- Project 1 (VISIBLE) -->
@@ -482,8 +477,8 @@
     </section>
 
     <!-- ENHANCED PUBLICATIONS SECTION WITH NEW DATA AND COLLAPSIBLE FILTERS -->
-    <!-- Increased spacing: py-16 md:py-20 -->
-    <section id="publications" class="hero-max mx-auto px-4 py-16 md:py-20 animated-item">
+    <!-- Add 'fade-in' class for animation -->
+    <section id="publications" class="hero-max mx-auto px-4 py-8 fade-in">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">Publications (41 Total)</h2>
       
       <!-- Button to toggle the filter/search controls -->
@@ -657,7 +652,7 @@
         </div>
 
         <!-- Publication 15 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2023">
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2B023">
           <div class="font-semibold text-dark-text pub-title">Cytotoxic activity, apoptosis induction and cell cycle arrest in human breast cancer (MCF7) cells by a novel fluorinated tetrahydro-[1,2,4]triazolo[3,4-a]isoquinolin chalcone</div>
           <div class="text-xs text-muted-text mt-1">
             Journal: <span class="pub-journal">Polycyclic Aromatic Compounds</span> (2023).
@@ -882,7 +877,7 @@
         </div>
 
         <!-- Publication 40 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="201D9">
           <div class="font-semibold text-dark-text pub-title">The regulatory role of syndecan-1 on human miR-222-3p expression in breast cancer cell lines</div>
           <div class="text-xs text-muted-text mt-1">
             Journal: <span class="pub-journal">Egyptian Journal of Histology</span> (2019).
@@ -905,16 +900,16 @@
       </div>
     </section>
 
-    <!-- Increased spacing: py-16 md:py-20 -->
-    <section id="news" class="hero-max mx-auto px-4 py-16 md:py-20 animated-item">
+    <!-- Add 'fade-in' class for animation -->
+    <section id="news" class="hero-max mx-auto px-4 py-8 fade-in">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">News</h2>
       <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
         <p class="text-muted-text">No recent news or announcements at this time.</p>
       </div>
     </section>
 
-    <!-- Increased spacing: py-16 md:py-20 -->
-    <section id="contact" class="hero-max mx-auto px-4 py-16 md:py-20 animated-item">
+    <!-- Add 'fade-in' class for animation -->
+    <section id="contact" class="hero-max mx-auto px-4 py-8 fade-in">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">Contact</h2>
       <div class="grid md:grid-cols-2 gap-6">
         <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
@@ -1153,9 +1148,9 @@
         filterIcon.classList.toggle('rotate-180', isOpen);
     });
     
-    // --- 4. FADE-IN ANIMATION ON SCROLL ---
+    // --- FADE-IN-ON-SCROLL SCRIPT ---
     document.addEventListener('DOMContentLoaded', () => {
-        const animatedItems = document.querySelectorAll('.animated-item');
+        const animatedItems = document.querySelectorAll('.fade-in');
 
         if ('IntersectionObserver' in window) {
             const observer = new IntersectionObserver((entries, observer) => {
@@ -1165,13 +1160,15 @@
                         observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.1 }); // Trigger when 10% of the item is visible
+            }, { 
+                threshold: 0.1 // Trigger when 10% of the item is visible
+            });
 
             animatedItems.forEach(item => {
                 observer.observe(item);
             });
         } else {
-            // Fallback for older browsers
+            // Fallback for older browsers (just show all items)
             animatedItems.forEach(item => {
                 item.classList.add('is-visible');
             });
