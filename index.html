@@ -652,7 +652,7 @@
         </div>
 
         <!-- Publication 15 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2B023">
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2023">
           <div class="font-semibold text-dark-text pub-title">Cytotoxic activity, apoptosis induction and cell cycle arrest in human breast cancer (MCF7) cells by a novel fluorinated tetrahydro-[1,2,4]triazolo[3,4-a]isoquinolin chalcone</div>
           <div class="text-xs text-muted-text mt-1">
             Journal: <span class="pub-journal">Polycyclic Aromatic Compounds</span> (2023).
@@ -877,7 +877,7 @@
         </div>
 
         <!-- Publication 40 -->
-        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="201D9">
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-publications-item hidden pub-item card-hover" data-year="2019">
           <div class="font-semibold text-dark-text pub-title">The regulatory role of syndecan-1 on human miR-222-3p expression in breast cancer cell lines</div>
           <div class="text-xs text-muted-text mt-1">
             Journal: <span class="pub-journal">Egyptian Journal of Histology</span> (2019).
@@ -1032,7 +1032,20 @@
     const pubFilterYear = document.getElementById('pub-filter-year');
     
     // Extract unique years for the filter dropdown
-    const years = [...new Set(pubItems.map(item => item.getAttribute('data-year')))].sort((a, b) => b - a);
+    const years = [...new Set(pubItems.map(item => {
+        // Fix the data-year attribute if it's incorrect
+        let year = item.getAttribute('data-year');
+        if (year === '2B023') {
+            item.setAttribute('data-year', '2023');
+            year = '2023';
+        }
+        if (year === '201D9') {
+            item.setAttribute('data-year', '2019');
+            year = '2019';
+        }
+        return year;
+    }))].sort((a, b) => b - a); // Sort descending
+
     years.forEach(year => {
         const option = document.createElement('option');
         option.value = year;
@@ -1073,7 +1086,7 @@
             // If years are the same, secondary sort by title (alphabetical) for consistency
             if (yearComparison === 0) {
                 const titleA = a.querySelector('.pub-title').textContent;
-                const titleB = a.querySelector('.pub-title').textContent;
+                const titleB = b.querySelector('.pub-title').textContent; // Corrected this line
                 return titleA.localeCompare(titleB);
             }
 
