@@ -137,6 +137,32 @@
     .collapsible-content.open {
         max-height: 500px; /* Sufficiently large value for content to fit */
     }
+
+    /* ### 5. Flip Card Animation for Lab Head ### */
+    .group:hover .flip-card-inner {
+        transform: rotateY(180deg);
+    }
+    .flip-card {
+        perspective: 1000px; /* Gives the 3D effect */
+    }
+    .flip-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.6s;
+        transform-style: preserve-3d;
+    }
+    .flip-card-front, .flip-card-back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+        border-radius: 1rem; /* Match other cards */
+    }
+    .flip-card-back {
+        transform: rotateY(180deg);
+    }
   </style>
 </head>
 <body class="bg-light-bg text-dark-text">
@@ -196,6 +222,42 @@
   </div>
 
   <main>
+    <!-- ### NEW LAB HEAD SECTION ### -->
+    <section id="lab-head" class="hero-max mx-auto px-4 py-8 md:py-12">
+      <!-- The 'group' class triggers the hover effect for the children -->
+      <div class="group flip-card w-full max-w-md mx-auto h-64">
+        <div class="flip-card-inner shadow-xl">
+          
+          <!-- Card Front -->
+          <div class="flip-card-front bg-white p-6 flex flex-col items-center justify-center text-center border border-gray-100">
+            <img class="w-24 h-24 rounded-full object-cover border-4 border-primary-blue/30 shadow-md"
+                 src="https://placehold.co/100x100/E6F3FF/0A1A2F?text=PI"
+                 onerror="this.onerror=null; this.src='https://placehold.co/100x100/E6F3FF/0A1A2F?text=PI';"
+                 alt="Headshot of Prof. Dr. Sherif A. Ibrahim" />
+            <h2 class="text-2xl font-bold text-dark-text mt-4">Prof. Dr. Sherif A. Ibrahim</h2>
+            <p class="text-lg font-medium text-primary-blue">Lab Head & Founder</p>
+            <p class="text-sm text-muted-text mt-4">(Hover for more details)</p>
+          </div>
+          
+          <!-- Card Back -->
+          <div class="flip-card-back bg-primary-blue text-white p-6 flex flex-col justify-center text-left">
+            <h3 class="text-xl font-bold mb-2">About Prof. Dr. Ibrahim</h3>
+            <p class="text-sm">
+              Here is where you can add more information. This text is just a placeholder.
+            </p>
+            <ul class="list-disc list-inside text-sm mt-4 space-y-1">
+              <li>Professor of Cancer Cell Biology</li>
+              <li>Egyptian leader of the GLYCANC Project</li>
+              <li>Recipient of EU Horizon 2020 funding</li>
+              <li>Expert in translational research & biomarkers</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ### EXISTING HERO SECTION ### -->
     <section class="hero hero-max mx-auto grid lg:grid-cols-12 gap-8 px-4 py-8 md:py-12">
       <div class="card bg-white rounded-2xl shadow-xl p-6 lg:p-8 lg:col-span-8">
         <h1 class="h1 text-dark-text">We explore <em>ideas</em> that matter.</h1>
@@ -238,7 +300,174 @@
       </div>
     </section>
 
-    <!-- PUBLICATIONS SECTION ADDED BACK -->
+    <!-- ### ALL WEBSITE SECTIONS BELOW ### -->
+
+    <section id="about" class="hero-max mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold mb-4 text-primary-blue">About the Lab</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
+          <p class="leading-relaxed">The <strong>Cellular and Molecular Biosciences Research Laboratory (CMBRL)</strong> at Cairo University—founded and led by <strong>Prof. Dr. Sherif A. Ibrahim</strong>, Professor of Zoology (Cancer Cell Biology) and Egyptian leader of the GLYCANC Project—is dedicated to advancing our understanding of cancer biology at the molecular and cellular levels.</p>
+          <p class="leading-relaxed mt-4">Prof. Ibrahim has secured competitive funding from EU Horizon 2020 to investigate the role of the cell-surface heparan sulfate proteoglycan <em>Syndecan-1 (Sdc-1)</em> and regulatory microRNAs in breast cancer progression. He has also led projects funded by DAAD, STDF, and ASRT. His pioneering work aims to define distinct molecular signatures and uncover novel mechanisms driving inflammatory breast cancer (IBC) and its tumor microenvironment, with emphasis on proteoglycans, cancer stem cells, and extracellular vesicles.</p>
+          <p class="text-sm text-muted-text mt-4">Founded: <strong>2019</strong> • Department of Zoology, Faculty of Science, Cairo University — Giza, Egypt</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
+          <h3 class="text-xl font-semibold text-primary-blue mb-2">Opportunities</h3>
+          <p><strong>Open Positions:</strong> Not applicable at this time. Follow us for future opportunities.</p>
+          <p class="text-muted-text mt-2">We welcome collaborative projects and visiting researchers. Please contact Prof. Ibrahim directly with proposals.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="mission" class="hero-max mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold mb-4 text-primary-blue">Mission</h2>
+      <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
+        <p class="leading-relaxed">
+          To elucidate the molecular circuitry of cancer—with emphasis on breast cancer and related conditions such as endometriosis—by discovering robust early-detection biomarkers and actionable therapeutic targets, and by decoding the signaling networks and microenvironmental cues that drive initiation, progression, and treatment resistance. We conduct rigorously reproducible research using state-of-the-art cellular, molecular, and multi-omics technologies, translating mechanistic insight into clinically relevant strategies for patients in Egypt and worldwide.
+        </p>
+      </div>
+    </section>
+
+    <section id="vision" class="hero-max mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold mb-4 text-primary-blue">Vision</h2>
+      <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
+        <p class="leading-relaxed">
+          A future where breast cancer is detected earlier, treated more precisely, and prevented more effectively through validated biomarkers, targeted therapeutics, and deep mechanistic understanding—bridging bench discoveries to bedside impact for communities in Egypt and beyond.
+        </p>
+      </div>
+    </section>
+
+    <section id="team" class="hero-max mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold mb-4 text-primary-blue">Research Team</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Team Member 1: Prof. Dr. Sherif Abdelaziz Ibrahim -->
+        <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md border border-gray-100 card-hover">
+          <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-blue/30" 
+               src="https://placehold.co/64x64/E6F3FF/0A1A2F?text=SI" 
+               onerror="this.onerror=null; this.src='https://placehold.co/64x64/E6F3FF/0A1A2F?text=SI';"
+               alt="Headshot of Prof. Dr. Sherif Abdelaziz Ibrahim" />
+          <div>
+            <strong class="text-dark-text">Prof. Dr. Sherif Abdelaziz Ibrahim</strong><br>
+            <span class="text-sm text-muted-text">Professor of Cancer Cell Biology • Head & Founder</span>
+          </div>
+        </div>
+        
+        <!-- Team Member 2: Dr. Hebatallah Hassan -->
+        <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md border border-gray-100 card-hover">
+          <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-blue/30" 
+               src="https://placehold.co/64x64/E6F3FF/0A1A2F?text=HH" 
+               onerror="this.onerror=null; this.src='https://placehold.co/64x64/E6F3FF/0A1A2F?text=HH';"
+               alt="Headshot of Dr. Hebatallah Hassan" />
+          <div>
+            <strong class="text-dark-text">Dr. Hebatallah Hassan</strong><br>
+            <span class="text-sm text-muted-text">Associate Professor • Co-PI</span>
+          </div>
+        </div>
+        
+        <!-- Team Member 3: Mr. Amr Ahmed WalyEldden -->
+        <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md border border-gray-100 card-hover">
+          <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-blue/30" 
+               src="https://placehold.co/64x64/E6F3FF/0A1A2F?text=AW" 
+               onerror="this.onerror=null; this.src='https://placehold.co/64x64/E6F3FF/0A1A2F?text=AW';"
+               alt="Headshot of Mr. Amr Ahmed WalyEldden" />
+          <div>
+            <strong class="text-dark-text">Mr. Amr Ahmed WalyEldden</strong><br>
+            <span class="text-sm text-muted-text">PhD Student • Senior Researcher</span>
+          </div>
+        </div>
+        
+        <!-- Team Member 4: Mrs. Liali Yousef Talat -->
+        <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md border border-gray-100 card-hover">
+          <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-blue/30" 
+               src="https://placehold.co/64x64/E6F3FF/0A1A2F?text=LT" 
+               onerror="this.onerror=null; this.src='https://placehold.co/64x64/E6F3FF/0A1A2F?text=LT';"
+               alt="Headshot of Mrs. Liali Yousef Talat" />
+          <div>
+            <strong class="text-dark-text">Mrs. Liali Yousef Talat</strong><br>
+            <span class="text-sm text-muted-text">PhD Student • Senior Researcher</span>
+          </div>
+        </div>
+        
+        <!-- Team Member 5: Mrs. Maysaa Maher -->
+        <div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-md border border-gray-100 card-hover">
+          <img class="w-16 h-16 rounded-full object-cover border-2 border-primary-blue/30" 
+               src="https://placehold.co/64x64/E6F3FF/0A1A2F?text=MM" 
+               onerror="this.onerror=null; this.src='https://placehold.co/64x64/E6F3FF/0A1A2F?text=MM';"
+               alt="Headshot of Mrs. Maysaa Maher" />
+          <div>
+            <strong class="text-dark-text">Mrs. Maysaa Maher</strong><br>
+            <span class="text-sm text-muted-text">MSc Student • Junior Researcher</span>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <section id="research" class="hero-max mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold mb-4 text-primary-blue">Research Areas</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
+          <div class="text-sm font-semibold text-primary-blue mb-1">Cancer Research</div>
+          <h3 class="text-xl font-semibold text-dark-text mb-2">Biomarker Discovery & Therapeutic Targeting</h3>
+          <p class="text-muted-text text-sm">We focus on identifying molecular biomarkers for early detection and uncovering novel therapeutic targets that drive tumor progression, with emphasis on inflammatory breast cancer.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
+          <div class="text-sm font-semibold text-primary-blue mb-1">Cell Biology</div>
+          <h3 class="text-xl font-semibold text-dark-text mb-2">Signaling & Microenvironment</h3>
+          <p class="text-muted-text text-sm">Our work explores cellular signaling pathways, extracellular matrix interactions, and mechanisms of cell–cell communication shaping cancer progression and metastasis.</p>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-6 border border-gray-100 card-hover">
+          <div class="text-sm font-semibold text-primary-blue mb-1">Human Biology</div>
+          <h3 class="text-xl font-semibold text-dark-text mb-2">Clinical Translation</h3>
+          <p class="text-muted-text text-sm">We link laboratory discoveries to clinical outcomes, integrating molecular and proteomic insights to improve patient diagnosis, treatment, and prognosis.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="hero-max mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold mb-4 text-primary-blue">Projects & International Collaborations</h2>
+      <div class="grid gap-4">
+        <!-- Project 1 (VISIBLE) -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 card-hover">
+          <div class="font-semibold text-dark-text mb-1">1. Proteomic profiling of exosomes: Discovery of novel diagnostic biomarkers for lymph node metastasis in breast cancer</div>
+          <div class="text-xs text-muted-text">PI: Dr. Sherif A. Ibrahim • Grant ID: Respect1-10052 • Funding: ASRT • Period: Oct 2022 – May 2025</div>
+        </div>
+        <!-- Project 2 (VISIBLE) -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 card-hover">
+          <div class="font-semibold text-dark-text mb-1">2. Extracellular vesicle-derived proteoglycans as non-invasive liquid biopsy-based cancer biomarkers: Towards novel breast cancer screening</div>
+          <div class="text-xs text-muted-text">Co-PI: Dr. Hebatallah Hassan • Grant ID: 46282 • Funding: STDF • Period: May 2022 – Apr 2025</div>
+        </div>
+        <!-- Project 3 (VISIBLE) -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 card-hover">
+          <div class="font-semibold text-dark-text mb-1">3. Syndecan-1 as a novel therapeutic target for putative stem cells in inflammatory breast cancer</div>
+          <div class="text-xs text-muted-text">PI: Dr. Sherif A. Ibrahim • Grant ID: 6309 • Funding: STDF • Period: Aug 2014 – Jul 2017</div>
+        </div>
+
+        <!-- HIDDEN PROJECTS (Items 4-7) -->
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-projects-item hidden card-hover">
+          <div class="font-semibold text-dark-text mb-1">4. MicroRNA signatures as potential biomarkers and therapeutic targets in inflammatory and non-inflammatory breast cancer Egyptian patients</div>
+          <div class="text-xs text-muted-text">PI: Dr. Sherif A. Ibrahim • Grant ID: 12683 • Funding: STDF • Period: Oct 2016 – Nov 2017</div>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-projects-item hidden card-hover">
+          <div class="font-semibold text-dark-text mb-1">5. Matrix glycans as multifunctional pathogenesis factors and therapeutic targets in cancer</div>
+          <div class="text-xs text-muted-text">PI: Prof. Martin Götte • Egyptian Partner: Dr. Sherif A. Ibrahim • Grant ID: 645756 • Funding: EU H2020-MSCA-RISE • Period: Jun 2015 – May 2019</div>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-projects-item hidden card-hover">
+          <div class="font-semibold text-dark-text mb-1">6. Syndecan-1 as a modulator of exosome-mediated microRNA function in inflammatory breast cancer</div>
+          <div class="text-xs text-muted-text">PI: Prof. Martin Götte • Egyptian Investigator: Dr. Sherif A. Ibrahim • Grant ID: 56808461 • Funding: DAAD • Period: Jan 2015 – Dec 2015</div>
+        </div>
+        <div class="bg-white rounded-xl shadow-md p-4 border border-gray-100 more-projects-item hidden card-hover">
+          <div class="font-semibold text-dark-text mb-1">7. Syndecan-1 in inflammation</div>
+          <div class="text-xs text-muted-text">PI: Prof. Martin Götte • Egyptian Investigator: Dr. Sherif A. Ibrahim • Grant ID: 56808461 • Funding: DAAD • Period: Jan 2013 – Dec 2014</div>
+        </div>
+      </div>
+      <!-- Toggle Button for Projects -->
+      <div class="flex justify-center mt-4">
+          <button id="toggle-projects-btn" data-type="Projects" class="text-primary-blue font-semibold hover:underline transition duration-150">Show 4 more Projects</button>
+      </div>
+    </section>
+
+    <!-- ### PUBLICATIONS SECTION ### -->
     <section id="publications" class="hero-max mx-auto px-4 py-8">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">Publications (41 Total)</h2>
       
@@ -660,6 +889,8 @@
           <button id="toggle-publications-btn" data-type="Publications" class="text-primary-blue font-semibold hover:underline transition duration-150">Show 38 more Publications</button>
       </div>
     </section>
+    
+    <!-- ### END PUBLICATIONS SECTION ### -->
 
     <section id="news" class="hero-max mx-auto px-4 py-8">
       <h2 class="text-2xl font-bold mb-4 text-primary-blue">News</h2>
@@ -800,6 +1031,7 @@
                  // Re-hide all toggleable items
                  Array.from(listContainer.querySelectorAll(`.${itemClass}`)).forEach(item => {
                     item.classList.add('hidden');
+
                  });
              }
              // Recalculate button text based on current filter visibility
