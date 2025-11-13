@@ -7,54 +7,61 @@
   <meta name="description" content="Cellular & Molecular Biosciences Research Laboratory (CMBRL), Cairo University — cancer biology, biomarkers, breast cancer, translational research." />
   <style>
     :root{
-      --bg:#0f1220; --panel:#171a2b; --muted:#a4a9c6; --text:#ecf0ff; --accent:#7b9eff;
-      --accent-2:#50e3c2; --ring: rgba(123,158,255,.45);
+      /* Sky blue theme */
+      --bg:#e6f3ff;         /* page background: light sky blue */
+      --panel:#ffffff;      /* card background */
+      --muted:#44546a;      /* secondary text */
+      --text:#0a1a2f;       /* primary text */
+      --accent:#0077b6;     /* professional blue */
+      --accent-2:#00b4d8;   /* lighter cyan */
+      --ring: rgba(0,119,182,.18);
+      --header:#f0f8ffcc;   /* translucent header tint (aliceblue w/ alpha) */
       --max: 1100px;
     }
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Arial,sans-serif;background:radial-gradient(1200px 600px at 10% -10%, #1a1f3b, transparent),
-      radial-gradient(1200px 600px at 110% 10%, #14203a, transparent), var(--bg);color:var(--text);}
-    a{color:var(--accent)}
-    header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(10px);background:linear-gradient(180deg, rgba(15,18,32,.9), rgba(15,18,32,.75));border-bottom:1px solid rgba(255,255,255,.06)}
+    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Inter,Arial,sans-serif;background:var(--bg);color:var(--text);} 
+    a{color:var(--accent);} 
+    /* Tinted, preview-ready sticky header */
+    header{position:sticky;top:0;z-index:50;background:var(--header);border-bottom:1px solid rgba(15,23,42,.06);backdrop-filter:saturate(120%) blur(8px);-webkit-backdrop-filter:saturate(120%) blur(8px);} 
     .nav{max-width:var(--max);margin:auto;display:flex;align-items:center;gap:18px;padding:12px 18px}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.3px}
-    .brand .logo{width:80px;height:80px;border-radius:12px;background:none;box-shadow:0 0 0 6px rgba(123,158,255,.12);object-fit:contain}
-    .nav a{color:var(--text);text-decoration:none;opacity:.9}
+    .brand .logo{width:80px;height:80px;border-radius:12px;background:none;object-fit:contain}
+    .nav a{color:var(--accent);text-decoration:none;opacity:.95} 
     .spacer{flex:1}
     .menu{display:flex;gap:16px;flex-wrap:wrap}
 
     .hero{max-width:var(--max);margin:40px auto 0;display:grid;grid-template-columns:1.2fr .8fr;gap:28px;padding:0 18px 40px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.08);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .card{background:var(--panel);border:1px solid rgba(15,23,42,.08);border-radius:16px;box-shadow:0 8px 24px rgba(15,23,42,.08);} 
     .hero .card{padding:28px}
     .h1{font-size:clamp(28px,4vw,40px);margin:0 0 10px}
     .lead{color:var(--muted);line-height:1.6}
     .badges{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
-    .badge{border:1px solid rgba(255,255,255,.12);padding:6px 10px;border-radius:999px;font-size:12px;color:#cfd6ff;background:rgba(123,158,255,.08)}
+    .badge{border:1px solid rgba(15,23,42,.10);padding:6px 10px;border-radius:999px;font-size:12px;color:var(--accent);background:#d9f3ff;} 
 
     section{max-width:var(--max);margin:0 auto;padding:26px 18px 10px}
-    h2{font-size:clamp(22px,3vw,28px);margin:30px 0 8px}
+    h2{font-size:clamp(22px,3vw,28px);margin:30px 0 8px;color:var(--accent)}
     .two{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
     .panel{padding:20px;border-radius:14px}
     .muted{color:var(--muted)}
 
     .people{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-    .person{display:flex;gap:12px;align-items:center;padding:14px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015));border:1px solid rgba(255,255,255,.08)}
-    .avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#5a6bff,#47e6bf)}
+    .person{display:flex;gap:12px;align-items:center;padding:14px;border-radius:14px;background:var(--panel);border:1px solid rgba(15,23,42,.08)} 
+    .headshot{width:72px;height:72px;border-radius:50%;object-fit:cover;border:1px solid rgba(15,23,42,.1);background:#eee} @media (max-width:640px){.headshot{width:60px;height:60px}}
 
     .research-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
-    .research-item{padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.015))}
-    .tag{font-size:12px;opacity:.85;color:#cfe0ff}
+    .research-item{padding:16px;border-radius:14px;border:1px solid rgba(15,23,42,.08);background:var(--panel)} 
+    .tag{font-size:12px;opacity:.85;color:var(--accent)}
 
     .pub-list{display:grid;gap:14px}
-    .pub{padding:14px;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
+    .pub{padding:14px;border-radius:12px;border:1px solid rgba(15,23,42,.08);background:var(--panel)}
     .pub .title{font-weight:600}
     .pub .meta{font-size:13px;color:var(--muted)}
 
     .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
-    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:10px 14px;text-decoration:none;color:#var(--text);background:rgba(255,255,255,.04)}
-    .btn.primary{background:linear-gradient(135deg,var(--accent),#9db3ff);border-color:transparent;color:#0c1130}
+    .btn{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(15,23,42,.14);border-radius:10px;padding:10px 14px;text-decoration:none;color:var(--text);background:#e0f5ff;transition:transform .06s ease, box-shadow .2s ease} 
+    .btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#fff;box-shadow:0 6px 16px rgba(0,119,182,.25)} 
 
-    footer{max-width:var(--max);margin:40px auto;padding:24px 18px;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
+    footer{max-width:var(--max);margin:40px auto;padding:24px 18px;color:var(--muted);border-top:1px solid rgba(15,23,42,.1)}
 
     @media (max-width:900px){.hero{grid-template-columns:1fr}.two{grid-template-columns:1fr}}
     .brand-name{font-size:clamp(16px,2.2vw,22px)}
@@ -65,7 +72,11 @@
   <header>
     <nav class="nav" aria-label="primary">
       <div class="brand">
-        <img class="logo" src="logo.png" alt="CMBRL logo" style="object-fit:cover" onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='logo.png.jpeg';}else if(this.dataset.fallback==='1'){this.dataset.fallback='2';this.src='logo.jpeg';}else{this.src='logo.jpg';}" />
+        <!-- Smart fallback: tries logo.png → logo.png.jpeg → logo.jpeg → logo.jpg -->
+        <img class="logo" src="logo.png" alt="CMBRL logo" style="object-fit:cover"
+             onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='logo.png.jpeg';}
+                      else if(this.dataset.fallback==='1'){this.dataset.fallback='2';this.src='logo.jpeg';}
+                      else{this.src='logo.jpg';}" />
         <span class="brand-name">Cellular & Molecular Biosciences Research Lab (CMBRL)</span>
       </div>
       <div class="spacer"></div>
@@ -111,7 +122,7 @@
       <div class="two">
         <div class="panel card">
           <p>The <strong>Cellular and Molecular Biosciences Research Laboratory (CMBRL)</strong> at Cairo University—founded and led by <strong>Prof. Dr. Sherif A. Ibrahim</strong>, Professor of Zoology (Cancer Cell Biology) and Egyptian leader of the GLYCANC Project—is dedicated to advancing our understanding of cancer biology at the molecular and cellular levels.</p>
-          <p>Prof. Ibrahim has secured competitive funding from EU Horizon 2020 to investigate the role of the cell-surface heparan sulfate proteoglycan <em>Syndecan‑1 (Sdc‑1)</em> and regulatory microRNAs in breast cancer progression. He has also led projects funded by DAAD, STDF, and ASRT. His pioneering work aims to define distinct molecular signatures and uncover novel mechanisms driving inflammatory breast cancer (IBC) and its tumor microenvironment, with emphasis on proteoglycans, cancer stem cells, and extracellular vesicles.</p>
+          <p>Prof. Ibrahim has secured competitive funding from EU Horizon 2020 to investigate the role of the cell-surface heparan sulfate proteoglycan <em>Syndecan-1 (Sdc-1)</em> and regulatory microRNAs in breast cancer progression. He has also led projects funded by DAAD, STDF, and ASRT. His pioneering work aims to define distinct molecular signatures and uncover novel mechanisms driving inflammatory breast cancer (IBC) and its tumor microenvironment, with emphasis on proteoglycans, cancer stem cells, and extracellular vesicles.</p>
           <p class="muted">Founded: <strong>2019</strong> • Department of Zoology, Faculty of Science, Cairo University — Giza, Egypt</p>
         </div>
         <div class="panel card">
@@ -124,7 +135,7 @@
     <section id="mission">
       <h2>Mission</h2>
       <div class="panel card">
-        <p>To elucidate the molecular circuitry of cancer—with emphasis on breast cancer and related conditions such as endometriosis—by discovering robust early‑detection biomarkers and actionable therapeutic targets, and by decoding the signaling networks and microenvironmental cues that drive initiation, progression, and treatment resistance. We conduct rigorously reproducible research using state‑of‑the‑art cellular, molecular, and multi‑omics technologies, translating mechanistic insight into clinically relevant strategies for patients in Egypt and worldwide.</p>
+        <p>To elucidate the molecular circuitry of cancer—with emphasis on breast cancer and related conditions such as endometriosis—by discovering robust early-detection biomarkers and actionable therapeutic targets, and by decoding the signaling networks and microenvironmental cues that drive initiation, progression, and treatment resistance. We conduct rigorously reproducible research using state-of-the-art cellular, molecular, and multi-omics technologies, translating mechanistic insight into clinically relevant strategies for patients in Egypt and worldwide.</p>
       </div>
     </section>
 
@@ -138,11 +149,41 @@
     <section id="team">
       <h2>Research Team</h2>
       <div class="people">
-        <div class="person"><div class="avatar"></div><div><strong>Prof. Dr. Sherif Abdelaziz Ibrahim</strong><br><span class="muted">Professor of Cancer Cell Biology • Head & Founder<br>Department of Zoology, Faculty of Science, Cairo University</span></div></div>
-        <div class="person"><div class="avatar"></div><div><strong>Dr. Hebatallah Hassan</strong><br><span class="muted">Associate Professor • Co‑PI<br>Department of Zoology, Faculty of Science, Cairo University</span></div></div>
-        <div class="person"><div class="avatar"></div><div><strong>Mr. Amr Ahmed WalyEldden</strong><br><span class="muted">PhD Student • Senior Researcher</span></div></div>
-        <div class="person"><div class="avatar"></div><div><strong>Mrs. Liali Yousef Talat</strong><br><span class="muted">PhD Student • Senior Researcher</span></div></div>
-        <div class="person"><div class="avatar"></div><div><strong>Mrs. Maysaa Maher</strong><br><span class="muted">MSc Student • Junior Researcher</span></div></div>
+        <div class="person">
+          <img class="headshot" src="images/team/sherif-ibrahim.jpg" alt="Prof. Dr. Sherif Abdelaziz Ibrahim"
+               onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='images/team/sherif-ibrahim.png';}
+                        else if(this.dataset.fallback==='1'){this.dataset.fallback='2';this.src='images/team/sherif-ibrahim.jpeg';}
+                        else{this.src='images/team/placeholder.jpg';}" />
+          <div><strong>Prof. Dr. Sherif Abdelaziz Ibrahim</strong><br><span class="muted">Professor of Cancer Cell Biology • Head & Founder<br>Department of Zoology, Faculty of Science, Cairo University</span></div>
+        </div>
+        <div class="person">
+          <img class="headshot" src="images/team/hebatallah-hassan.jpg" alt="Dr. Hebatallah Hassan"
+               onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='images/team/hebatallah-hassan.png';}
+                        else if(this.dataset.fallback==='1'){this.dataset.fallback='2';this.src='images/team/hebatallah-hassan.jpeg';}
+                        else{this.src='images/team/placeholder.jpg';}" />
+          <div><strong>Dr. Hebatallah Hassan</strong><br><span class="muted">Associate Professor • Co-PI<br>Department of Zoology, Faculty of Science, Cairo University</span></div>
+        </div>
+        <div class="person">
+          <img class="headshot" src="images/team/amr-walyeldden.jpg" alt="Mr. Amr Ahmed WalyEldden"
+               onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='images/team/amr-walyeldden.png';}
+                        else if(this.dataset.fallback==='1'){this.dataset.fallback='2';this.src='images/team/amr-walyeldden.jpeg';}
+                        else{this.src='images/team/placeholder.jpg';}" />
+          <div><strong>Mr. Amr Ahmed WalyEldden</strong><br><span class="muted">PhD Student • Senior Researcher</span></div>
+        </div>
+        <div class="person">
+          <img class="headshot" src="images/team/liali-yousef-talat.jpg" alt="Mrs. Liali Yousef Talat"
+               onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='images/team/liali-yousef-talat.png';}
+                        else if(this.dataset.fallback==='1'){this.dataset.fallback='2';this.src='images/team/liali-yousef-talat.jpeg';}
+                        else{this.src='images/team/placeholder.jpg';}" />
+          <div><strong>Mrs. Liali Yousef Talat</strong><br><span class="muted">PhD Student • Senior Researcher</span></div>
+        </div>
+        <div class="person">
+          <img class="headshot" src="images/team/maysaa-maher.jpg" alt="Mrs. Maysaa Maher"
+               onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='images/team/maysaa-maher.png';}
+                        else if(this.dataset.fallback==='1'){this.dataset.fallback='2';this.src='images/team/maysaa-maher.jpeg';}
+                        else{this.src='images/team/placeholder.jpg';}" />
+          <div><strong>Mrs. Maysaa Maher</strong><br><span class="muted">MSc Student • Junior Researcher</span></div>
+        </div>
       </div>
     </section>
 
